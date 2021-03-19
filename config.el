@@ -126,11 +126,37 @@
 ;; Here are some additional functions/macros that could help you configure Doom:;;
 ;; - `load!' for loading external *.el files relative to this one
 ;; - `use-package!' for configuring packages
+(use-package! all-the-icons-ivy-rich
+  :ensure t
+  :init (all-the-icons-ivy-rich-mode 1))
+(global-set-key (kbd "M-0") 'treemacs-select-window)
+(use-package! ivy-rich
+  :ensure t
+  :init (ivy-rich-mode 1))
+(use-package! doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t)
+  (load-theme 'doom-one t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  (if (display-graphic-p)
+      (progn
+       ;; Enable custom neotree theme (all-the-icons must be installed!)
+  ;; or for treemacs users
+        (setq doom-themes-treemacs-theme "doom-colors")
+        (doom-themes-treemacs-config)
+        ))
+
+        ;; Corrects (and improves) org-mode's native fontification.
+        (doom-themes-org-config))
 (after! python
   (set-popup-rules!
     '(("^\\*Flycheck errors\\*$" :size 0.22)
       ("^\\*ein: .+?\\.ipynb\\*" :side 'right :size 0.5)
-      )))
+      ))
+  (setq! eldoc-mode nil))
 ;(use-package! shackle
 ;  :hook (python-mode . shackle-mode)
 ;  :demand t
@@ -221,6 +247,53 @@
 ;; ========================================
 ;; lsp
 ;; ========================================
+(use-package! lsp
+  :config
+  (setq lsp-file-watch-threshold 50000
+        ))
+(use-package! lsp-ui
+  :hook (lsp-mode . lsp-ui-mode)
+  :config
+  (setq
+   lsp-ui-doc-enable t
+   lsp-ui-sideline-enable nil
+   lsp-completion-enable t
+   lsp-ui-doc-position 'at-point
+   lsp-ui-doc-header nil
+   lsp-ui-doc-include-signature t
+   lsp-ui-doc-background (doom-color 'base4)
+   lsp-ui-doc-border (doom-color 'fg))
+  (setq-default lsp-ui-doc-frame-parameters '((left . -1)
+                                              (top . -1)
+                                              (no-accept-focus . t)
+                                              (min-width . 0)
+                                              (width . 0)
+                                              (min-height . 0)
+                                              (height . 0)
+                                              (internal-border-width . 5)
+                                              (vertical-scroll-bars)
+                                              (horizontal-scroll-bars)
+                                              (left-fringe . 0)
+                                              (right-fringe . 0)
+                                              (menu-bar-lines . 0)
+                                              (tool-bar-lines . 0)
+                                              (line-spacing . 0.1)
+                                              (unsplittable . t)
+                                              (undecorated . t)
+                                              (visibility . nil)
+                                              (mouse-wheel-frame . nil)
+                                              (no-other-frame . t)
+                                              (cursor-type)
+                                              (no-special-glyphs . t)))
+  )
+
+(use-package! company-lsp
+  :after lsp-mode)
+
+;; ========================================
+;; LaTeX
+;; ========================================
+
 
 ;;
 ;; To get information about any of these functions/macros, move the cursor over
