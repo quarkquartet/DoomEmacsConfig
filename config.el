@@ -157,6 +157,9 @@
       ("^\\*ein: .+?\\.ipynb\\*" :side 'right :size 0.5)
       ))
   (setq! eldoc-mode nil))
+(use-package! treemacs
+  :config
+  (setq treemacs-width 28))
 ;(use-package! shackle
 ;  :hook (python-mode . shackle-mode)
 ;  :demand t
