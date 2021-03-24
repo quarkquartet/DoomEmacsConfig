@@ -2,7 +2,6 @@
 
 
 (after! lsp
-  (setq lsp-file-watch-threshold 50000)
   (use-package! company-lsp)
   (use-package! lsp-ui
     :hook (lsp-mode . lsp-ui-mode)

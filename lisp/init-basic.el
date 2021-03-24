@@ -7,6 +7,7 @@
       org-directory "~/org/"
       display-line-numbers-type t
       confirm-kill-emacs nil
+      lsp-file-watch-threshold 50000
       treemacs-width 28)
 (setq-default cursor-type 'bar)
 ;; ========================================
