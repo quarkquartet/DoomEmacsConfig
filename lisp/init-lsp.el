@@ -2,7 +2,7 @@
 
 
 (after! lsp
-  (use-package! company-lsp)
+  ;(use-package! company-lsp)
   (use-package! lsp-ui
     :hook (lsp-mode . lsp-ui-mode)
     :config

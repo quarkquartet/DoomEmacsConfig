@@ -2,7 +2,7 @@
 
 (setq user-full-name "Isaac Wang"
       user-mail-address "hepisaacf@gmail.com"
-      company-idle-delay 0.01
+      company-idle-delay 0.1
       flycheck-checker-error-threshold 50000
       org-directory "~/org/"
       display-line-numbers-type t
@@ -18,7 +18,7 @@
   ;; english font
   (if (display-graphic-p)
       (progn
-        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Fira Code" 13)) ;; 11 13 17 19 23
+        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Monaco" 12)) ;; 11 13 17 19 23
         ;; chinese font 中文字体
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
