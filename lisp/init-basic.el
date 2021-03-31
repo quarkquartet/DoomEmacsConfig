@@ -39,6 +39,16 @@
   :config
   (kaolin-treemacs-theme))
 
+;; ========================================
+;; Highlight-indent guide
+;; ========================================
+(use-package! highlight-indent-guides
+  :config
+  (defun +indent-guides-for-all-but-first-column (level responsive display)
+    (unless (< level 1)
+      (highlight-indent-guides--highlighter-default level responsive display)))
+  (setq highlight-indent-guides-highlighter-function #'+indent-guides-for-all-but-first-column)
+  )
 
 (global-set-key (kbd "M-0") 'treemacs-select-window)
 

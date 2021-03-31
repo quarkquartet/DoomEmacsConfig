@@ -4,5 +4,6 @@
       "TAB" 'cdlatex-tab)
 (use-package! reftex
   :config
-  (setq reftex-plug-into-AUCTeX '(nil nil t t t)))
+  (setq reftex-plug-into-AUCTeX '(nil nil t t t))
+  )
 (provide 'init-latex)

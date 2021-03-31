@@ -14,8 +14,11 @@
                           (lsp)))
     :config
     (setq lsp-pyright-venv-path '(expand-file-name "~/envs/py37"))
-    (flycheck-select-checker 'python-flake8)
     )
   )
+(defun my-python-checker ()
+    (flycheck-select-checker 'python-flake8))
+(add-hook! 'python-mode-local-vars-hook #'my-python-checker)
+
 
 (provide 'init-python)
