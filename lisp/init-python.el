@@ -1,9 +1,5 @@
 ;;; lisp/init-python.el -*- lexical-binding: t; -*-
 
-
-  (defun my-flycheck-setup ()
-    (flycheck-select-checker 'python-flake8))
-  (add-hook 'python-mode-local-vars-hook #'my-flycheck-setup)
 (after! python
   (set-popup-rules!
     '(("^\\*Flycheck errors\\*$" :size 0.22))
@@ -18,6 +14,7 @@
                           (lsp)))
     :config
     (setq lsp-pyright-venv-path '(expand-file-name "~/envs/py37"))
+    (flycheck-select-checker 'python-flake8)
     )
   )
 
