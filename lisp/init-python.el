@@ -2,7 +2,7 @@
 
 
   (defun my-flycheck-setup ()
-    (flycheck-add-next-checker 'python-flake8))
+    (flycheck-select-checker 'python-flake8))
   (add-hook 'python-mode-local-vars-hook #'my-flycheck-setup)
 (after! python
   (set-popup-rules!
