@@ -14,6 +14,7 @@
                           (lsp)))
     :config
     (setq lsp-pyright-venv-path '(expand-file-name "~/envs/py37"))
+    (setq-default lsp-modeline-diagnostics-mode nil)
     )
   )
 (defun my-python-checker ()
