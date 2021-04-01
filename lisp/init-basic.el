@@ -11,18 +11,30 @@
       treemacs-width 28)
 (setq-default cursor-type 'bar)
 ;; ========================================
-;; font
+;; font 中文字体
 ;; ========================================
+(defun +my/better-font()
+  (interactive)
+  ;; english font
+  (if (display-graphic-p)
+      (progn
+        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Fira Code" 12))
+        ;; chinese font
+        (dolist (charset '(kana han symbol cjk-misc bopomofo))
+          (set-fontset-font (frame-parameter nil 'font)
+                            charset
+                            (font-spec :family "STKaiti" :size 14))) ;; 14 16 20 22 28
+        ) ;; 11 13 17 19 23
+    ))
+(defun +my|init-font(frame)
+  (with-selected-frame frame
+    (if (display-graphic-p)
+        (+my/better-font))))
 
-(when (display-graphic-p)
-  (defun set-font (english chinese english-size chinese-size)
-    (set-face-attribute 'default nil :font
-                        (format   "%s:pixelsize=%d"  english english-size))
-    (dolist (charset '(kana han symbol cjk-misc bopomofo))
-      (set-fontset-font (frame-parameter nil 'font) charset
-                        (font-spec :family chinese :size chinese-size))))
-  (set-font "Monaco" "STKaiti" 12 14)
-  )
+(if (and (fboundp 'daemonp) (daemonp))
+    (add-hook 'after-make-frame-functions #'+my|init-font)
+  (+my/better-font))
+
 
 ;; ========================================
 ;; Themes
