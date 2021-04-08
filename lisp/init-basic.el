@@ -62,6 +62,20 @@
   (setq highlight-indent-guides-highlighter-function #'+indent-guides-for-all-but-first-column)
   )
 
+
+
+;; ========================================
+;; Grammarly
+;; ========================================
+(load-file "~/.doom.d/plugins/send-to-osx-grammarly/send-to-osx-grammarly.el")
+(call-process-shell-command "osascript ~/.emacs.d/plugins/send-to-osx-grammarly/pull.scpt")
+(define-key global-map (kbd "C-c C-g h") #'send-to-osx-grammarly-push)
+(define-key global-map (kbd "C-c C-g l") #'send-to-osx-grammarly-pull)
+
+;; ========================================
+;; Treemacs
+;; ========================================
+
 (global-set-key (kbd "M-0") 'treemacs-select-window)
 
 (provide 'init-basic)
