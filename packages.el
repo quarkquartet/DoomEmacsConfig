@@ -10,6 +10,7 @@
 ;(package! some-package)
 (package! kaolin-themes)
 (package! all-the-icons-ivy-rich)
+(package! pdf-continuous-scroll-mode :recipe (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
 ;(package! company-lsp)
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:

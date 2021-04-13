@@ -78,4 +78,13 @@
 
 (global-set-key (kbd "M-0") 'treemacs-select-window)
 
+;; ========================================
+;; PDF View Mode
+;; ========================================
+(add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode)
+(map! :after pdf-sync
+      :map pdf-sync-minor-mode-map
+      "C-c C-g j" 'pdf-sync-forward-search)
+
+
 (provide 'init-basic)
