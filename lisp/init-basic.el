@@ -91,5 +91,6 @@
 ;; ========================================
 ;; stop completing english word
 ;; ========================================
-
+(set-company-backend! 'textmode
+                      '(:separate company-yasnippet))
 (provide 'init-basic)
