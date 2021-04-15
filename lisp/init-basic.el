@@ -8,6 +8,7 @@
       display-line-numbers-type t
       confirm-kill-emacs nil
       lsp-file-watch-threshold 50000
+      company-minimum-prefix-length 1
       treemacs-width 28)
 (setq-default cursor-type 'bar)
 ;; ========================================
@@ -86,5 +87,9 @@
       :map pdf-sync-minor-mode-map
       "C-c j" 'pdf-sync-forward-search)
 
+
+;; ========================================
+;; stop completing english word
+;; ========================================
 
 (provide 'init-basic)
