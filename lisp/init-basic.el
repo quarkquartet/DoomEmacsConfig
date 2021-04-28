@@ -11,6 +11,7 @@
       company-minimum-prefix-length 1
       treemacs-width 28)
 (setq-default cursor-type 'bar)
+(+global-word-wrap-mode +1)
 ;; ========================================
 ;; font 中文字体
 ;; ========================================
@@ -19,14 +20,14 @@
   ;; english font
   (if (display-graphic-p)
       (progn
-        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Fira Code" 12))
+        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Monaco" 13)) ;; 11 13 17 19 23
         ;; chinese font
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
                             charset
-                            (font-spec :family "STKaiti" :size 14))) ;; 14 16 20 22 28
-        ) ;; 11 13 17 19 23
+                            (font-spec :family "STKaiti" :size 15)))) ;; 14 16 20 22 28
     ))
+
 (defun +my|init-font(frame)
   (with-selected-frame frame
     (if (display-graphic-p)
@@ -35,8 +36,6 @@
 (if (and (fboundp 'daemonp) (daemonp))
     (add-hook 'after-make-frame-functions #'+my|init-font)
   (+my/better-font))
-
-
 ;; ========================================
 ;; Themes
 ;; ========================================
@@ -44,7 +43,9 @@
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t)
-  (load-theme 'doom-one t)
+  (if (display-graphic-p)
+      (load-theme 'doom-solarized-dark t)
+    (load-theme 'doom-one t))
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
   )
@@ -68,10 +69,12 @@
 ;; ========================================
 ;; Grammarly
 ;; ========================================
-(load-file "~/.doom.d/plugins/send-to-osx-grammarly/send-to-osx-grammarly.el")
-(call-process-shell-command "osascript ~/.emacs.d/plugins/send-to-osx-grammarly/pull.scpt")
-(define-key global-map (kbd "C-c C-g h") #'send-to-osx-grammarly-push)
-(define-key global-map (kbd "C-c C-g l") #'send-to-osx-grammarly-pull)
+(if (display-graphic-p)
+    (progn
+      (load-file "~/.doom.d/plugins/send-to-osx-grammarly/send-to-osx-grammarly.el")
+      (call-process-shell-command "osascript ~/.emacs.d/plugins/send-to-osx-grammarly/pull.scpt")
+      (define-key global-map (kbd "C-c C-g h") #'send-to-osx-grammarly-push)
+      (define-key global-map (kbd "C-c C-g l") #'send-to-osx-grammarly-pull)))
 
 ;; ========================================
 ;; Treemacs
@@ -84,7 +87,6 @@
 ;; ========================================
 (add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode)
 (map! :after pdf-sync
-      :map pdf-sync-minor-mode-map
       "C-c j" 'pdf-sync-forward-search)
 
 
