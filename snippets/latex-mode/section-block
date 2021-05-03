@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
 # name: section block
-# uuid: 
-# key: sbl
+# uuid: bl
+# key: bl
+# condition: t
 # --
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 $1
