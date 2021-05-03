@@ -94,7 +94,8 @@
 ;; stop completing english word
 ;; ========================================
 (set-company-backend! 'text-mode '(:separate company-yasnippet))
-
+(after! company
+  (add-to-list 'company-backends 'company-files))
 
 ;; ========================================
 ;; eaf

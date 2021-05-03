@@ -61,7 +61,8 @@
   (setq org-refile-use-outline-path t)
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-allow-creating-parent-nodes (quote confirm))
-  (setq org-format-latex-options '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.5 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
-  (setq org-startup-with-latex-preview t))
+  (setq org-format-latex-options '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
+  (setq org-startup-with-latex-preview t)
+  )
 
 (provide 'init-org)
