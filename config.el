@@ -52,6 +52,7 @@
 (require 'init-basic)
 (require 'init-ivy)
 (require 'init-lsp)
+(require 'init-markdown)
 (require 'init-company)
 (require 'init-org)
 (require 'init-python)

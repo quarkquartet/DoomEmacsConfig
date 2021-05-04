@@ -20,8 +20,8 @@
   ;; english font
   (if (display-graphic-p)
       (progn
-        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Monaco" 13)) ;; 11 13 17 19 23
-        ;; chinese font
+        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Fira Code" 13)) ;; 11 13 17 19 23
+        ;; chinese font 中文字体
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
                             charset
@@ -44,7 +44,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t)
   (if (display-graphic-p)
-      (load-theme 'doom-solarized-dark t)
+      (load-theme 'doom-one t)
     (load-theme 'doom-one t))
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
@@ -112,7 +112,9 @@
 ;;  )
 (use-package! eaf
   :config
-  (eaf-setq eaf-browser-dark-mode "false"))
+  (eaf-setq eaf-browser-dark-mode "false")
+  (setq browse-url-browser-function 'eaf-open-browser)
+  (defalias 'browse-web #'eaf-open-browser))
 
 
 (provide 'init-basic)
