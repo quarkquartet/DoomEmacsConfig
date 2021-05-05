@@ -54,6 +54,8 @@
 (require 'init-lsp)
 (require 'init-markdown)
 (require 'init-company)
+(require 'init-pdf)
+(require 'init-eaf)
 (require 'init-org)
 (require 'init-python)
 (require 'init-latex)

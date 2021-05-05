@@ -9,8 +9,10 @@
       confirm-kill-emacs nil
       lsp-file-watch-threshold 50000
       company-minimum-prefix-length 1
+      browse-url-browser-function 'eaf-open-browser
       treemacs-width 28)
 (setq-default cursor-type 'bar)
+(defalias 'browse-web #'eaf-open-browser)
 (+global-word-wrap-mode +1)
 ;; ========================================
 ;; font 中文字体
@@ -96,25 +98,6 @@
 (set-company-backend! 'text-mode '(:separate company-yasnippet))
 (after! company
   (add-to-list 'company-backends 'company-files))
-
-;; ========================================
-;; eaf
-;; ========================================
-;;(use-package! eaf
-;;  :config
-;;  (eaf-setq eaf-browser-dark-mode "true")
-;;  (eaf-setq eaf-terminal-dark-mode "false")
-;;  (eaf-setq eaf-mindmap-dark-mode "follow") ; default option
-;;  (eaf-setq eaf-pdf-dark-mode "false")
-;;  (eaf-setq eaf-browser-enable-adblocker "true")
-;;  (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
-;;  (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
-;;  )
-(use-package! eaf
-  :config
-  (eaf-setq eaf-browser-dark-mode "false")
-  (setq browse-url-browser-function 'eaf-open-browser)
-  (defalias 'browse-web #'eaf-open-browser))
 
 
 (provide 'init-basic)
