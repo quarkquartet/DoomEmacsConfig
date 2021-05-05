@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: PRD author
+# key: pra
+# condition: t
+# group: PRD
+# --
+\author{$1}
+\email{$2}
+\affiliation{$3}

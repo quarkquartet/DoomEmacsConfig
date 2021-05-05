@@ -1,0 +1,65 @@
+# -*- mode: snippet -*-
+# name: PRD template
+# uuid: 
+# key: prd
+# condition: t
+# group: PRD
+# --
+\documentclass[10pt,aps,prd,nofootinbib,superscriptaddress,preprintnumbers,balancelastpage]{revtex4}
+\PassOptionsToPackage{slash}{url}
+\usepackage{graphicx,epsfig,psfrag,amssymb,hyperref}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{color,graphicx,epsfig,psfrag,amsmath,empheq}
+\usepackage{bm}
+\usepackage{mathrsfs,amsfonts,color}
+\usepackage{slashed}
+\usepackage{hepunits}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{xspace}
+\usepackage[utf8]{inputenc}
+
+\renewcommand{\baselinestretch}{1.2}
+
+% Document lengths.
+\AtBeginDocument{
+\heavyrulewidth=.08em
+\lightrulewidth=.05em
+\cmidrulewidth=.03em
+\belowrulesep=.65ex
+\belowbottomsep=0pt
+\aboverulesep=.4ex
+\abovetopsep=0pt
+\cmidrulesep=\doublerulesep
+\cmidrulekern=.5em
+\defaultaddspace=.5em
+}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{$1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Ruoquan Wang}
+\email{rw484@physics.rutgers.edu}
+\affiliation{New High Energy Theory Center, Rutgers, the State University of New Jersey, Piscataway, New Jersey 08854-8019 USA}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+
+\bibliographystyle{utphys}
+\bibliography{}
+
+\end{document}
