@@ -1,7 +1,6 @@
 # -*- mode: snippet -*-
-# name: section block
-# uuid: secb
-# key: sb
+# name: comment block
+# key: cb
 # condition: t
 # --
 # -----------------------------------------------------------------
