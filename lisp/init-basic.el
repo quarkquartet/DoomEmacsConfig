@@ -7,12 +7,11 @@
       org-directory "~/org/"
       display-line-numbers-type t
       confirm-kill-emacs nil
+      doom-modeline-major-mode-icon t
       lsp-file-watch-threshold 50000
-      company-minimum-prefix-length 1
-      browse-url-browser-function 'eaf-open-browser
       treemacs-width 28)
 (setq-default cursor-type 'bar)
-(defalias 'browse-web #'eaf-open-browser)
+
 (+global-word-wrap-mode +1)
 ;; ========================================
 ;; font 中文字体
@@ -22,7 +21,7 @@
   ;; english font
   (if (display-graphic-p)
       (progn
-        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Fira Code" 13)) ;; 11 13 17 19 23
+        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Droid Sans Mono" 14)) ;; 11 13 17 19 23
         ;; chinese font 中文字体
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
@@ -67,7 +66,6 @@
   )
 
 
-
 ;; ========================================
 ;; Grammarly
 ;; ========================================
@@ -87,9 +85,9 @@
 ;; ========================================
 ;; PDF View Mode
 ;; ========================================
-(add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode)
-(map! :after pdf-sync
-      "C-c j" 'pdf-sync-forward-search)
+;;(add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode)
+;;(map! :after pdf-sync
+;;      "C-c j" 'pdf-sync-forward-search)
 
 
 ;; ========================================

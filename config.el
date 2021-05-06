@@ -50,11 +50,9 @@
 ;;
 (require 'init-func)
 (require 'init-basic)
-(require 'init-ivy)
 (require 'init-lsp)
-(require 'init-markdown)
+(require 'init-ivy)
 (require 'init-company)
-(require 'init-pdf)
 (require 'init-eaf)
 (require 'init-org)
 (require 'init-python)
