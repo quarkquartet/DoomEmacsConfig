@@ -9,6 +9,8 @@
       confirm-kill-emacs nil
       doom-modeline-major-mode-icon t
       lsp-file-watch-threshold 50000
+      doom-font (font-spec :family "Menlo" :size 14)
+      doom-unicode-font (font-spec :family "monospace")
       treemacs-width 28)
 (setq-default cursor-type 'bar)
 
@@ -16,27 +18,27 @@
 ;; ========================================
 ;; font 中文字体
 ;; ========================================
-(defun +my/better-font()
-  (interactive)
-  ;; english font
-  (if (display-graphic-p)
-      (progn
-        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Droid Sans Mono" 14)) ;; 11 13 17 19 23
-        ;; chinese font 中文字体
-        (dolist (charset '(kana han symbol cjk-misc bopomofo))
-          (set-fontset-font (frame-parameter nil 'font)
-                            charset
-                            (font-spec :family "STKaiti" :size 15)))) ;; 14 16 20 22 28
-    ))
-
-(defun +my|init-font(frame)
-  (with-selected-frame frame
-    (if (display-graphic-p)
-        (+my/better-font))))
-
-(if (and (fboundp 'daemonp) (daemonp))
-    (add-hook 'after-make-frame-functions #'+my|init-font)
-  (+my/better-font))
+;;(defun +my/better-font()
+;;  (interactive)
+;;  ;; english font
+;;  (if (display-graphic-p)
+;;      (progn
+;;        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Menlo" 13)) ;; 11 13 17 19 23
+;;        ;; chinese font 中文字体
+;;        (dolist (charset '(kana han symbol cjk-misc bopomofo))
+;;          (set-fontset-font (frame-parameter nil 'font)
+;;                            charset
+;;                            (font-spec :family "STKaiti" :size 15)))) ;; 14 16 20 22 28
+;;    ))
+;;
+;;(defun +my|init-font(frame)
+;;  (with-selected-frame frame
+;;    (if (display-graphic-p)
+;;        (+my/better-font))))
+;;
+;;(if (and (fboundp 'daemonp) (daemonp))
+;;    (add-hook 'after-make-frame-functions #'+my|init-font)
+;;  (+my/better-font))
 ;; ========================================
 ;; Themes
 ;; ========================================
