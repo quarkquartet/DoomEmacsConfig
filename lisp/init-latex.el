@@ -6,6 +6,12 @@
   :config
   (setq reftex-plug-into-AUCTeX '(nil nil t t t))
   )
+(after! latex
+  (use-package! lsp-grammarly
+    :ensure t
+    :hook (text-mode . (lambda ()
+                         (require 'lsp-grammarly)
+                         (lsp)))))
 (defun TeX-eaf-sync-view()
   (unless (fboundp 'eaf-open)
     (error "EAF is not available!"))

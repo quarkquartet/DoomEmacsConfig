@@ -71,13 +71,20 @@
 ;; ========================================
 ;; Grammarly
 ;; ========================================
-(if (display-graphic-p)
-    (progn
-      (load-file "~/.doom.d/plugins/send-to-osx-grammarly/send-to-osx-grammarly.el")
-      (call-process-shell-command "osascript ~/.emacs.d/plugins/send-to-osx-grammarly/pull.scpt")
-      (define-key global-map (kbd "C-c C-g h") #'send-to-osx-grammarly-push)
-      (define-key global-map (kbd "C-c C-g l") #'send-to-osx-grammarly-pull)))
+;;(if (display-graphic-p)
+;;    (progn
+;;      (load-file "~/.doom.d/plugins/send-to-osx-grammarly/send-to-osx-grammarly.el")
+;;      (call-process-shell-command "osascript ~/.doom.d/plugins/send-to-osx-grammarly/scripts/pull.scpt")
+;;      (call-process-shell-command "osascript ~/.doom.d/plugins/send-to-osx-grammarly/scripts/push.scpt")
+;;      (define-key global-map (kbd "C-c C-g h") #'send-to-osx-grammarly-push)
+;;      (define-key global-map (kbd "C-c C-g l") #'send-to-osx-grammarly-pull)))
 
+
+(use-package! lsp-grammarly
+  :ensure t
+  :hook (text-mode . (lambda ()
+                       (require 'lsp-grammarly)
+                       (lsp))))  ; or lsp-deferred
 ;; ========================================
 ;; Treemacs
 ;; ========================================
