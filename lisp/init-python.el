@@ -15,6 +15,15 @@
     :config
     (setq lsp-pyright-venv-path '(expand-file-name "~/envs/py37"))
     )
+  (use-package! lsp-mode
+    :config
+    (progn
+      (add-hook! 'prog-mode-hook #'lsp)
+      (lsp-register-client
+       (make-lsp-client :new-connection (lsp-tramp-connection "pyls")
+                        :major-modes '(python-mode)
+                        :remote? t
+                        :server-id 'pyls-remote))))
   )
 (defun my-python-checker ()
     (flycheck-select-checker 'python-flake8))

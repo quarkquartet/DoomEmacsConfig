@@ -67,24 +67,6 @@
   (setq highlight-indent-guides-highlighter-function #'+indent-guides-for-all-but-first-column)
   )
 
-
-;; ========================================
-;; Grammarly
-;; ========================================
-;;(if (display-graphic-p)
-;;    (progn
-;;      (load-file "~/.doom.d/plugins/send-to-osx-grammarly/send-to-osx-grammarly.el")
-;;      (call-process-shell-command "osascript ~/.doom.d/plugins/send-to-osx-grammarly/scripts/pull.scpt")
-;;      (call-process-shell-command "osascript ~/.doom.d/plugins/send-to-osx-grammarly/scripts/push.scpt")
-;;      (define-key global-map (kbd "C-c C-g h") #'send-to-osx-grammarly-push)
-;;      (define-key global-map (kbd "C-c C-g l") #'send-to-osx-grammarly-pull)))
-
-
-(use-package! lsp-grammarly
-  :ensure t
-  :hook (text-mode . (lambda ()
-                       (require 'lsp-grammarly)
-                       (lsp))))  ; or lsp-deferred
 ;; ========================================
 ;; Treemacs
 ;; ========================================
@@ -97,8 +79,10 @@
 ;;(add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode)
 ;;(map! :after pdf-sync
 ;;      "C-c j" 'pdf-sync-forward-search)
-
-
+(use-package! tramp
+  :config
+  (add-to-list 'tramp-remote-path "/dresden/users/wh302/anaconda3/bin")
+  (add-to-list 'tramp-remote-path "/dresden/users/wh302/anaconda3/envs/py365/bin"))
 ;; ========================================
 ;; stop completing english word
 ;; ========================================
