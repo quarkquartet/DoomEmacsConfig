@@ -9,11 +9,10 @@
       confirm-kill-emacs nil
       doom-modeline-major-mode-icon t
       lsp-file-watch-threshold 50000
-      doom-font (font-spec :family "Menlo" :size 14)
-      doom-unicode-font (font-spec :family "monospace")
-      treemacs-width 28)
+      doom-font (font-spec :family "MonacoB" :size 14)
+      doom-unicode-font (font-spec :family "Monaco Nerd Font Mono" :size 14)
+      treemacs-width 32)
 (setq-default cursor-type 'bar)
-
 (+global-word-wrap-mode +1)
 ;; ========================================
 ;; font 中文字体
@@ -23,12 +22,12 @@
 ;;  ;; english font
 ;;  (if (display-graphic-p)
 ;;      (progn
-;;        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Menlo" 13)) ;; 11 13 17 19 23
+;;        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Menlo" 14)) ;; 11 13 17 19 23
 ;;        ;; chinese font 中文字体
 ;;        (dolist (charset '(kana han symbol cjk-misc bopomofo))
 ;;          (set-fontset-font (frame-parameter nil 'font)
 ;;                            charset
-;;                            (font-spec :family "STKaiti" :size 15)))) ;; 14 16 20 22 28
+;;                            (font-spec :family "" :size 15)))) ;; 14 16 20 22 28
 ;;    ))
 ;;
 ;;(defun +my|init-font(frame)
@@ -79,10 +78,6 @@
 ;;(add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode)
 ;;(map! :after pdf-sync
 ;;      "C-c j" 'pdf-sync-forward-search)
-(use-package! tramp
-  :config
-  (add-to-list 'tramp-remote-path "/dresden/users/wh302/anaconda3/bin")
-  (add-to-list 'tramp-remote-path "/dresden/users/wh302/anaconda3/envs/py365/bin"))
 ;; ========================================
 ;; stop completing english word
 ;; ========================================

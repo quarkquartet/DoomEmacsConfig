@@ -2,14 +2,13 @@
 
 
 (after! org
-  (map! "C-c a" #'org-agenda)
   (setq org-agenda-files '("~/agenda/"))
   (setq org-agenda-custom-commands
         '(
           ("w" . "任务安排")
           ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
-          ("wb" "重要且不紧急的任务" tags-todo "-weekly-monthly-daily+PRIORITY=\"B\"")
-          ("wc" "不重要且紧急的任务" tags-todo "+PRIORITY=\"C\"")
+          ("wb" "重要但不紧急的任务" tags-todo "-weekly-monthly-daily+PRIORITY=\"B\"")
+          ("wc" "不重要的任务" tags-todo "+PRIORITY=\"C\"")
           ("W" "Weekly Review"
            ((stuck "") ;; review stuck projects as designated by org-stuck-projects
             (tags-todo "project")
@@ -30,7 +29,7 @@
           ))
   ;; 优先级范围和默认任务的优先级
   (setq org-highest-priority ?A)
-  (setq org-lowest-priority  ?E)
+  (setq org-lowest-priority  ?C)
   ;; 优先级醒目外观
   (setq org-priority-faces
         '((?A . (:background "red" :foreground "white" :weight bold))
