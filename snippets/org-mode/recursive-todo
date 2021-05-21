@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: recursive todo
+# key: recu
+# condition: t
+# --
+:PROPERTIES:
+:COOKIE_DATA: todo recursive
+:END:

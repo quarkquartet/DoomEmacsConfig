@@ -14,6 +14,7 @@
       treemacs-width 32)
 (setq-default cursor-type 'bar)
 (+global-word-wrap-mode +1)
+
 ;; ========================================
 ;; font 中文字体
 ;; ========================================
@@ -38,6 +39,8 @@
 ;;(if (and (fboundp 'daemonp) (daemonp))
 ;;    (add-hook 'after-make-frame-functions #'+my|init-font)
 ;;  (+my/better-font))
+
+
 ;; ========================================
 ;; Themes
 ;; ========================================
@@ -71,6 +74,7 @@
 ;; ========================================
 
 (global-set-key (kbd "M-0") 'treemacs-select-window)
+(global-set-key (kbd "C-c C-t t") 'treemacs)
 
 ;; ========================================
 ;; PDF View Mode

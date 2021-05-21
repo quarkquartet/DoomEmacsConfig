@@ -9,9 +9,6 @@
   (add-hook! 'before-save-hook 'py-isort-before-save)
 
   (use-package! lsp-pyright
-    :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp)))
     :config
     (setq lsp-pyright-venv-path '(expand-file-name "~/envs/py37"))
     )
