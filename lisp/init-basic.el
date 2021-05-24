@@ -9,7 +9,7 @@
       confirm-kill-emacs nil
       doom-modeline-major-mode-icon t
       lsp-file-watch-threshold 50000
-      doom-font (font-spec :family "MonacoB" :size 14)
+      doom-font (font-spec :family "MonacoB" :size 13)
       doom-unicode-font (font-spec :family "Monaco Nerd Font Mono" :size 14)
       treemacs-width 32)
 (setq-default cursor-type 'bar)
