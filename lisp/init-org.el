@@ -2,7 +2,7 @@
 
 
 (after! org
-  (setq org-agenda-files '("~/agenda/"))
+  (setq org-agenda-files '("~/org/agenda"))
   (setq org-agenda-custom-commands
         '(
           ("w" . "任务安排")
@@ -18,7 +18,7 @@
             ))
           ))
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "DOING(s)" "Waiting(w)" "|" "DONE(d!)" "CANCELED(c @/!)")))
+        '((sequence "TODO(t)" "DOING(s)" "WAIT(w)" "|" "DONE(d!)" "CANCELED(c @/!)")))
   (setq org-todo-keyword-faces
         '(
           ("TODO"  .   (:foreground "red" :weight bold))
@@ -41,18 +41,9 @@
   (setq org-enforce-todo-dependencies t)
   ;; 绑定键位
   (defvar org-agenda-dir "" "gtd org files location")
-  (setq-default org-agenda-dir "~/agenda")
+  (setq-default org-agenda-dir "~/org/agenda")
   (setq org-agenda-file-log (expand-file-name "2021.org" org-agenda-dir))
   (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
-
-  (setq org-capture-templates
-        '(("m" "MuonE" entry (file+headline org-agenda-file-gtd "MuonE")
-           "* TODO [#B] %?\n %i\n"
-           :empty-lines 1)
-          ("a" "Axiogenesis" entry (file+headline org-agenda-file-gtd "Axiogenesis")
-           "* %?\n %i\n %U"
-           :empty-lines 1)
-          ))
   (setq org-clock-clocktable-default-properties
         '(:link t :maxlevel 6 :fileskip0 t :compact nil :narrow 60 :score 0 :scope agenda-with-archives))
   (setq org-refile-targets (quote ((nil :maxlevel . 9)
@@ -63,5 +54,13 @@
   (setq org-format-latex-options '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
   (setq org-startup-with-latex-preview t)
   )
+
+;; ========================================
+;; Mobile org setting
+;; ========================================
+;; Set to the name of the file where new notes will be stored
+(setq org-mobile-inbox-for-pull "~/org/inbox.org")
+;; Set mobile org
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
 
 (provide 'init-org)
