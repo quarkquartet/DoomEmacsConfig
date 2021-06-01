@@ -50,13 +50,15 @@
   (setq doom-themes-enable-bold t)
   (if (display-graphic-p)
       (load-theme 'doom-solarized-dark t)
-    (load-theme 'doom-one t))
+    (load-theme 'doom-molokai t))
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
+  (setq doom-themes-treemacs-theme "doom-colors")
+  (doom-themes-treemacs-config)
   )
-(use-package! kaolin-themes
-  :config
-  (kaolin-treemacs-theme))
+;;(use-package! kaolin-themes
+;;  :config
+;;  (kaolin-treemacs-theme))
 
 ;; ========================================
 ;; Highlight-indent guide
