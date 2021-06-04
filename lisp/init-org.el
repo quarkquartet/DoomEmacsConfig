@@ -2,7 +2,7 @@
 
 
 (after! org
-  (setq org-agenda-files '("~/org/agenda"))
+  (setq org-agenda-files '("~/org/"))
   (setq org-agenda-custom-commands
         '(
           ("w" . "任务安排")
@@ -41,7 +41,7 @@
   (setq org-enforce-todo-dependencies t)
   ;; 绑定键位
   (defvar org-agenda-dir "" "gtd org files location")
-  (setq-default org-agenda-dir "~/org/agenda")
+  (setq-default org-agenda-dir "~/org/")
   (setq org-agenda-file-log (expand-file-name "2021.org" org-agenda-dir))
   (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
   (setq org-clock-clocktable-default-properties
@@ -54,13 +54,6 @@
   (setq org-format-latex-options '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
   (setq org-startup-with-latex-preview t)
   )
-
-;; ========================================
-;; Mobile org setting
-;; ========================================
-;; Set to the name of the file where new notes will be stored
-(setq org-mobile-inbox-for-pull "~/org/inbox.org")
-;; Set mobile org
-(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+  
 
 (provide 'init-org)

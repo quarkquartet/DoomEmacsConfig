@@ -81,9 +81,9 @@
 ;; ========================================
 ;; PDF View Mode
 ;; ========================================
-;;(add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode)
-;;(map! :after pdf-sync
-;;      "C-c j" 'pdf-sync-forward-search)
+(add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode)
+(map! :after pdf-sync
+      "C-c j" 'pdf-sync-forward-search)
 ;; ========================================
 ;; stop completing english word
 ;; ========================================
