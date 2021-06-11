@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: title
+# key: tit
+# condition: t
+# --
+# -*- org -*-
+#+TITLE: $1
+#+AUTHOR: Isaac Ruoquan Wang
+#+EMAIL: hepisaacf@gmail.com
+#+KEYWORDS: GTD
+#+OPTIONS: H:4 toc:t
+#+PROPERTY: CLOCK_INTO_DRAWER t
+#+STARTUP: fold

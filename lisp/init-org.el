@@ -23,7 +23,7 @@
         '(
           ("TODO"  .   (:foreground "red" :weight bold))
           ("DOING" .   (:foreground "orange" :weight bold))
-          ("Waiting" . (:foreground "SkyBlue" :weight bold))
+          ("WAIT" . (:foreground "SkyBlue" :weight bold))
           ("DONE" .    (:foreground "green" :weight bold))
           ("CANCELED" .     (:foreground "green" :weight bold))
           ))
@@ -54,6 +54,13 @@
   (setq org-format-latex-options '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
   (setq org-startup-with-latex-preview t)
   )
-  
+(after! org-pomodoro
+  :config
+  (setq org-pomodoro-length 45
+        org-pomodoro-short-break-length 10
+        org-pomodoro-long-break-length 30))
+
+(if (display-graphic-p)
+(add-hook! 'org-mode-hook (setq-local line-spacing 0.45)))
 
 (provide 'init-org)

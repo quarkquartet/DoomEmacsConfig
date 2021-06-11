@@ -40,7 +40,6 @@
 ;;    (add-hook 'after-make-frame-functions #'+my|init-font)
 ;;  (+my/better-font))
 
-
 ;; ========================================
 ;; Themes
 ;; ========================================
@@ -49,7 +48,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t)
   (if (display-graphic-p)
-      (load-theme 'doom-solarized-dark t)
+      (load-theme 'doom-one t)
     (load-theme 'doom-molokai t))
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
@@ -76,14 +75,13 @@
 ;; ========================================
 
 (global-set-key (kbd "M-0") 'treemacs-select-window)
-(global-set-key (kbd "C-c C-t t") 'treemacs)
 
 ;; ========================================
 ;; PDF View Mode
 ;; ========================================
-(add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode)
-(map! :after pdf-sync
-      "C-c j" 'pdf-sync-forward-search)
+;;add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode)
+;;map! :after pdf-sync
+;;     "C-c j" 'pdf-sync-forward-search)
 ;; ========================================
 ;; stop completing english word
 ;; ========================================

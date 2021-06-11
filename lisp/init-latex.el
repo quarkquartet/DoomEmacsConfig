@@ -6,6 +6,7 @@
   :config
   (setq reftex-plug-into-AUCTeX '(nil nil t t t))
   )
+(setq +latex-viewers '(skim))
 ;;(defun TeX-eaf-sync-view()
 ;;  (unless (fboundp 'eaf-open)
 ;;    (error "EAF is not available!"))
