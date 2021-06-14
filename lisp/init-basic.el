@@ -9,8 +9,6 @@
       confirm-kill-emacs nil
       doom-modeline-major-mode-icon t
       lsp-file-watch-threshold 50000
-      doom-font (font-spec :family "MonacoB" :size 13)
-      doom-unicode-font (font-spec :family "Monaco Nerd Font Mono" :size 14)
       treemacs-width 32)
 (setq-default cursor-type 'bar)
 (+global-word-wrap-mode +1)
@@ -18,33 +16,31 @@
 ;; ========================================
 ;; font 中文字体
 ;; ========================================
-;;(defun +my/better-font()
-;;  (interactive)
-;;  ;; english font
-;;  (if (display-graphic-p)
-;;      (progn
-;;        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Menlo" 14)) ;; 11 13 17 19 23
-;;        ;; chinese font 中文字体
-;;        (dolist (charset '(kana han symbol cjk-misc bopomofo))
-;;          (set-fontset-font (frame-parameter nil 'font)
-;;                            charset
-;;                            (font-spec :family "" :size 15)))) ;; 14 16 20 22 28
-;;    ))
-;;
-;;(defun +my|init-font(frame)
-;;  (with-selected-frame frame
-;;    (if (display-graphic-p)
-;;        (+my/better-font))))
-;;
-;;(if (and (fboundp 'daemonp) (daemonp))
-;;    (add-hook 'after-make-frame-functions #'+my|init-font)
-;;  (+my/better-font))
-(if (display-graphic-p)
-    (progn
-      (dolist (charset '(kana han symbol cjk-misc bopomofo))
-        (set-fontset-font (frame-parameter nil 'font)
-                          charset
-                          (font-spec :family "STHeiti" :size 14)))))
+(defun +my/better-font()
+ (interactive)
+ ;; english font
+ (if (display-graphic-p)
+     (progn
+       ;(set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "InconsolataGo QiHei NF" 14)) ;; 11 13 17 19 23
+       ;; chinese font 中文字体
+       (setq doom-font (font-spec :family "MonacoB" :size 13))
+       (setq doom-unicode-font (font-spec :family "Monaco Nerd Font Mono"))
+       (dolist (charset '(kana han symbol cjk-misc bopomofo))
+         (set-fontset-font (frame-parameter nil 'font)
+                           charset
+                           (font-spec :family "STHeiti" :size 15)))) ;; 14 16 20 22 28
+   ))
+
+(defun +my|init-font(frame)
+ (with-selected-frame frame
+   (if (display-graphic-p)
+       (+my/better-font))))
+
+(if (and (fboundp 'daemonp) (daemonp))
+   (add-hook 'after-make-frame-functions #'+my|init-font)
+  (+my/better-font))
+(add-hook 'doom-init-ui-hook #'+my/better-font)
+
 ;; ========================================
 ;; Themes
 ;; ========================================
