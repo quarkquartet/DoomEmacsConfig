@@ -8,7 +8,7 @@
 ;;                        '(line-spacing 0.     ;; 必须两项组合，
 ;;                          line-height 1.45      ;; 才能起到效果。
 ;;                          ))))
-(add-hook! 'org-mode-hook (kill-local-variable 'line-spacing)(setq-local default-text-properties '(line-spacing 0.0 line-height 1.45)) )
+(add-hook! 'org-mode-hook (kill-local-variable 'line-spacing)(setq-local default-text-properties '(line-spacing 0.2 line-height 1.25)) )
 (after! org
   (setq org-agenda-files '("~/org/"))
   (setq org-agenda-custom-commands
