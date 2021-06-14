@@ -1,6 +1,14 @@
 ;;; lisp/init-org.el -*- lexical-binding: t; -*-
 
-
+;;(add-hook 'org-mode-hook
+;;          (lambda ()
+;;            (kill-local-variable 'line-spacing) ;; 如果之前设置的 local 变量没有
+;;                                                ;; 删除，可能会导致后面的设置无效。
+;;            (setq-local default-text-properties
+;;                        '(line-spacing 0.     ;; 必须两项组合，
+;;                          line-height 1.45      ;; 才能起到效果。
+;;                          ))))
+(add-hook! 'org-mode-hook (kill-local-variable 'line-spacing)(setq-local default-text-properties '(line-spacing 0.0 line-height 1.45)) )
 (after! org
   (setq org-agenda-files '("~/org/"))
   (setq org-agenda-custom-commands
@@ -35,8 +43,6 @@
         '((?A . (:background "red" :foreground "white" :weight bold))
           (?B . (:background "DarkOrange" :foreground "white" :weight bold))
           (?C . (:background "yellow" :foreground "DarkGreen" :weight bold))
-          (?D . (:background "DodgerBlue" :foreground "black" :weight bold))
-          (?E . (:background "SkyBlue" :foreground "black" :weight bold))
           ))
   (setq org-enforce-todo-dependencies t)
   ;; 绑定键位
@@ -54,13 +60,6 @@
   (setq org-format-latex-options '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
   (setq org-startup-with-latex-preview t)
   )
-(after! org-pomodoro
-  :config
-  (setq org-pomodoro-length 45
-        org-pomodoro-short-break-length 10
-        org-pomodoro-long-break-length 30))
 
-(if (display-graphic-p)
-(add-hook! 'org-mode-hook (setq-local line-spacing 0.45)))
 
 (provide 'init-org)
