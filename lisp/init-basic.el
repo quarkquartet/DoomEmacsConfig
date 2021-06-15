@@ -17,30 +17,28 @@
 ;; font 中文字体
 ;; ========================================
 (defun +my/better-font()
- (interactive)
- ;; english font
- (if (display-graphic-p)
-     (progn
-       ;(set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "InconsolataGo QiHei NF" 14)) ;; 11 13 17 19 23
-       ;; chinese font 中文字体
-       (setq doom-font (font-spec :family "MonacoB" :size 13))
-       (setq doom-unicode-font (font-spec :family "Monaco Nerd Font Mono"))
-       (dolist (charset '(kana han symbol cjk-misc bopomofo))
-         (set-fontset-font (frame-parameter nil 'font)
-                           charset
-                           (font-spec :family "STHeiti" :size 15)))) ;; 14 16 20 22 28
-   ))
+  (interactive)
+;; english font
+  (if (display-graphic-p)
+      (progn
+        (set-face-attribute 'default nil :font (font-spec :family "MonacoB" :size 13))
+        (set-fontset-font t 'unicode (font-spec :family "Monaco Nerd Font Mono") nil 'prepend)
+        (dolist (charset '(kana han symbol cjk-misc bopomofo))
+          (set-fontset-font (frame-parameter nil 'font)
+                            charset
+                            (font-spec :family "STHeiti" :size 15)))
+        (dolist (charset '(?\x25C9 ?\x25CB ?\x2738 ?\x273F))
+          (set-fontset-font nil charset (font-spec :family "MonacoB" :size 13)))) ;; 14 16 20 22 28
+))
 
 (defun +my|init-font(frame)
- (with-selected-frame frame
-   (if (display-graphic-p)
-       (+my/better-font))))
+  (with-selected-frame frame
+    (if (display-graphic-p)
+        (+my/better-font))))
 
 (if (and (fboundp 'daemonp) (daemonp))
-   (add-hook 'after-make-frame-functions #'+my|init-font)
-  (+my/better-font))
-(add-hook 'doom-init-ui-hook #'+my/better-font)
-
+  (add-hook 'after-make-frame-functions #'+my|init-font)
+ (+my/better-font))
 ;; ========================================
 ;; Themes
 ;; ========================================
