@@ -21,13 +21,13 @@
 ;; english font
   (if (display-graphic-p)
       (progn
-        (set-face-attribute 'default nil :font (font-spec :family "Menlo" :size 13))
+        (set-face-attribute 'default nil :font (font-spec :family "MonacoB" :size 13))
         ;(set-fontset-font t 'unicode (font-spec :family "MesloLGS Nerd Font Mono") nil 'prepend)
         (setq doom-unicode-font (font-spec :family "MesloLGS Nerd Font Mono"))
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
                             charset
-                            (font-spec :family "STHeiti" :size 15)))
+                            (font-spec :family "STHeiti" :size 14)))
         (dolist (charset '(?\x25C9 ?\x25CB ?\x2738 ?\x273F))
           (set-fontset-font nil charset (font-spec :family "MesloLGS Nerd Font Mono" :size 13)))) ;; 14 16 20 22 28
 ))
