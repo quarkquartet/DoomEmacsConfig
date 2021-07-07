@@ -2,7 +2,8 @@
 
 (setq user-full-name "Isaac Wang"
       user-mail-address "hepisaacf@gmail.com"
-      company-idle-delay 0.1
+      company-idle-delay 0.01
+      company-minimum-prefix-length 1
       flycheck-checker-error-threshold 50000
       org-directory "~/org/"
       display-line-numbers-type t
