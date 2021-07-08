@@ -49,7 +49,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t)
   (if (display-graphic-p)
-      (load-theme 'doom-molokai t)
+      (load-theme 'doom-solarized-dark t)
     (load-theme 'doom-molokai t))
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)

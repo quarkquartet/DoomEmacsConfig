@@ -49,7 +49,9 @@
    lsp-completion-enable t
    lsp-ui-doc-position 'at-point
    lsp-ui-doc-header nil
-   lsp-ui-doc-enable t
+   lsp-ui-doc-enable nil
+   lsp-ui-doc-max-height 20
+   lsp-ui-doc-max-width 60
    lsp-ui-doc-include-signature t
    lsp-ui-doc-border (doom-color 'fg))
   (defun +my/hover-or-signature-help ()
