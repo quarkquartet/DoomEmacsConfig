@@ -9,10 +9,10 @@
   (add-hook! 'before-save-hook 'py-isort-before-save)
 
 (use-package! lsp-pyright
-  :config
-  (setq lsp-pyright-venv-path '(expand-file-name "~/envs/py37"))
-  )
-  )
+ :config
+ (setq lsp-pyright-venv-path '(expand-file-name "~/envs/py37"))
+ )
+ )
 (defun my-python-checker ()
     (flycheck-select-checker 'python-flake8))
 (add-hook! 'python-mode-local-vars-hook #'my-python-checker)

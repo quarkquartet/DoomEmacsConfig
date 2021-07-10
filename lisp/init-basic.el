@@ -2,8 +2,8 @@
 
 (setq user-full-name "Isaac Wang"
       user-mail-address "hepisaacf@gmail.com"
-      company-idle-delay 0.01
-      company-minimum-prefix-length 1
+      company-idle-delay 0.02
+      company-minimum-prefix-length 2
       flycheck-checker-error-threshold 50000
       org-directory "~/org/"
       display-line-numbers-type t
@@ -49,7 +49,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t)
   (if (display-graphic-p)
-      (load-theme 'doom-solarized-dark t)
+      (load-theme 'doom-one t)
     (load-theme 'doom-molokai t))
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)

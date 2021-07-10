@@ -8,7 +8,7 @@
 ;; clients, file templates and snippets.
 (add-to-list 'default-frame-alist '(top . 120))
 (add-to-list 'default-frame-alist '(left . 600))
-(add-to-list 'default-frame-alist '(width . 98))
+(add-to-list 'default-frame-alist '(width . 90))
 (add-to-list 'default-frame-alist '(height . 47))
 (add-to-list 'load-path (expand-file-name "~/.doom.d/lisp"))
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
@@ -53,7 +53,7 @@
 ;;
 (require 'init-func)
 (require 'init-basic)
-(require 'init-lsp)
+;(require 'init-lsp)
 (require 'init-ivy)
 (require 'init-company)
 (require 'init-eaf)
