@@ -13,6 +13,7 @@
            (setq-local line-spacing 0.45))
 (after! org
   (setq org-agenda-files '("~/org/"))
+  (setq org-image-actual-width '(500))
   (setq org-agenda-custom-commands
         '(
           ("w" . "任务安排")

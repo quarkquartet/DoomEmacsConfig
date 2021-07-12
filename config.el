@@ -9,7 +9,7 @@
 (add-to-list 'default-frame-alist '(top . 120))
 (add-to-list 'default-frame-alist '(left . 600))
 (add-to-list 'default-frame-alist '(width . 93))
-(add-to-list 'default-frame-alist '(height . 42))
+(add-to-list 'default-frame-alist '(height . 47))
 (add-to-list 'load-path (expand-file-name "~/.doom.d/lisp"))
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
