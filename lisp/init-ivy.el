@@ -2,9 +2,14 @@
 
 ;; Better experience with icons
 ;; Enable it before`ivy-rich-mode' for better performance
+
+(when (icons-displayable-p)
 (use-package! all-the-icons-ivy-rich
-  :ensure t
-  :hook (ivy-mode . all-the-icons-ivy-rich-mode))
+  ;:ensure t
+  :hook (ivy-mode . all-the-icons-ivy-rich-mode)
+  (all-the-icons-ivy-rich-reload))
+  )
+
 
 ;; More friendly display transformer for Ivy
 (use-package! ivy-rich
@@ -16,7 +21,7 @@
                                   (or (and ivy-rich-mode 'abbreviate) 'name)))))
   :init
   ;; For better performance
-  (ivy-rich-mode 1)
+  ;(ivy-rich-mode 1)
   (setq ivy-rich-parse-remote-buffer nil))
 ;;(use-package! all-the-icons-ivy-rich
 ;;  :ensure t

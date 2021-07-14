@@ -20,6 +20,7 @@
 \usepackage{booktabs}
 \usepackage{xspace}
 \usepackage[utf8]{inputenc}
+\usepackage{siunitx}
 
 \renewcommand{\baselinestretch}{1.2}
 
@@ -46,7 +47,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \author{Ruoquan Wang}
-\email{rw484@physics.rutgers.edu}
+\email{ruoquan.wang@rutgers.edu}
 \affiliation{New High Energy Theory Center, Rutgers, the State University of New Jersey, Piscataway, New Jersey 08854-8019 USA}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

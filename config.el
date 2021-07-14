@@ -53,7 +53,7 @@
 ;;
 (require 'init-func)
 (require 'init-basic)
-;(require 'init-lsp)
+(require 'init-lsp)
 (require 'init-ivy)
 (require 'init-company)
 (require 'init-eaf)
@@ -61,4 +61,3 @@
 (require 'init-python)
 (require 'init-latex)
 (require 'init-markdown)
-;(require 'init-pdf)

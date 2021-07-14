@@ -33,13 +33,13 @@
 \usepackage{enumitem}
 \usepackage{marvosym}
 \usepackage{bbold}
+\usepackage{siunitx}
 \usepackage{verbatim}
 \usepackage{soul} %scratch out text
 \usepackage[normalem]{ulem}
 \usepackage{pifont}% http://ctan.org/pkg/pifont
 \usepackage{cancel}
 
-\newcommand{\KH}[1]{{\color{red} KH:\bf~#1}}
 \newcommand{\RW}[1]{{\color{blue} #1}}
 \newcommand{\rmd}{\mathrm{d}}
 \newcommand{\gev}{\mathrm{GeV}}

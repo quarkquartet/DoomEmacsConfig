@@ -17,6 +17,8 @@
 (package! deferred)
 (package! epc)
 (package! s)
+(package! org-roam-bibtex
+  :recipe (:host github :repo "org-roam/org-roam-bibtex"))
 ;(package! spacemacs-theme)
 ;(package! company-lsp)
 ;; To install a package directly from a remote git repo, you must specify a
