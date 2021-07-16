@@ -2,19 +2,22 @@
 
 (setq user-full-name "Isaac Wang"
       user-mail-address "hepisaacf@gmail.com"
-      company-idle-delay 0
-      company-minimum-prefix-length 1
+      company-idle-delay 0.1
+      company-minimum-prefix-length 2
       flycheck-checker-error-threshold 5000
       org-directory "~/org/"
+      org-roam-directory "~/org/"
       display-line-numbers-type t
       confirm-kill-emacs nil
       doom-modeline-major-mode-icon t
       doom-modeline-lsp nil
+      +org-roam-open-buffer-on-find-file nil
       lsp-signature-auto-activate nil
       lsp-file-watch-threshold 5000
       lsp-modeline-code-actions-enable nil
       lsp-eldoc-enable-hover nil
       lsp-modeline-diagnostics-enable nil
+      git-gutter-fringe t
       treemacs-width 32)
 (setq-default cursor-type 'bar)
 (+global-word-wrap-mode +1)
@@ -29,13 +32,13 @@
       (progn
         (set-face-attribute 'default nil :font (font-spec :family "MonacoB" :size 13))
         ;(set-fontset-font t 'unicode (font-spec :family "MesloLGS Nerd Font Mono") nil 'prepend)
-        (setq doom-unicode-font (font-spec :family "Monaco Nerd Font Mono"))
+        (setq doom-unicode-font (font-spec :family "SFMono Nerd Font"))
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
                             charset
                             (font-spec :family "STHeiti" :size 14)))
         (dolist (charset '(?\x25C9 ?\x25CB ?\x2738 ?\x273F))
-          (set-fontset-font nil charset (font-spec :family "Monaco Nerd Font Mono" :size 13)))) ;; 14 16 20 22 28
+          (set-fontset-font nil charset (font-spec :family "SFMono Nerd Font" :size 13)))) ;; 14 16 20 22 28
 ))
 
 (defun +my|init-font(frame)

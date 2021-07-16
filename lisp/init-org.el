@@ -1,16 +1,9 @@
 ;;; lisp/init-org.el -*- lexical-binding: t; -*-
 
-;;(add-hook 'org-mode-hook
-;;          (lambda ()
-;;            (kill-local-variable 'line-spacing) ;; 如果之前设置的 local 变量没有
-;;                                                ;; 删除，可能会导致后面的设置无效。
-;;            (setq-local default-text-properties
-;;                        '(line-spacing 0.     ;; 必须两项组合，
-;;                          line-height 1.45      ;; 才能起到效果。
-;;                          ))))
-;(add-hook! 'org-mode-hook (kill-local-variable 'line-spacing)(setq-local default-text-properties '(line-spacing 0.05 line-height 1.35)) )
 (add-hook! 'org-mode-hook
-           (setq-local line-spacing 0.45))
+  (setq-local line-spacing 0.45))
+(map! :map org-mode-map
+      :localleader "M" #'cdlatex-environment)
 (after! org
   (setq org-agenda-files '("~/org/"))
   (setq org-image-actual-width '(500))
@@ -64,5 +57,89 @@
   (setq org-startup-with-latex-preview t)
   )
 
+;;---------------------------
+;; Org-ref-bibtex
+;;---------------------------
+(setq bibliography-path "~/org/literature/library.bib")
+(setq pdf-path "~/Dropbox/Zotero\ Papers")
+(setq bibliography-notes "~/org/literature/")
+(use-package! org-ref
+  :after org
+  :config
+  (setq
+   org-ref-completion-library 'org-ref-ivy-cite
+   org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
+   org-ref-default-bibliography (list "~/org/literature/library.bib")
+   org-ref-notes-directory bibliography-notes
+   org-ref-notes-function 'orb-edit-notes
+   )
+;  (setq org-ref-notes-function
+;      (lambda (thekey)
+;	(let ((bibtex-completion-bibliography (org-ref-find-bibliography)))
+;	  (bibtex-completion-edit-notes
+;	   (list (car (org-ref-get-bibtex-key-and-file thekey)))))))
+  )
+(after! org-ref
+  (org-ref-ivy-cite-completion)
+  (setq
+   bibtex-completion-notes-path bibliography-notes
+   bibtex-completion-bibliography bibliography-path
+   bibtex-completion-pdf-field "file"
+   bibtex-completion-notes-template-multiple-files
+   (concat
+    "#+TITLE: ${title}-${author}-${year}\n"
+    "#+ROAM_KEY: cite:${=key=}\n"
+    "#+ROAM_TAGS: ${keywords}\n"
+    "Time-stamp: <>\n"
+    "- tags :: \n"
+    "\n"
+    "* NOTES \n"
+    ":PROPERTIES:\n"
+    ":Custom_ID: ${=key=}\n"
+    ":URL: ${url}\n"
+    ":AUTHOR: ${author}\n"
+    ":NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")\n"
+    ":DATE: ${date}\n"
+    ":YEAR: ${year}\n"
+    ":DOI: ${doi}\n"
+    ":END:\n\n")
+   )
+  )
+(use-package! org-roam-bibtex
+  :after org-roam
+  :hook (org-roam-mode . org-roam-bibtex-mode)
+  :custom
+  (orb-insert-interface 'ivy-bibtex)
+  (orb-note-actions-interface 'ivy)
+  :config
+  (setq orb-preformat-keywords
+        '("=key=" "title" "url" "file" "author" "keywords" "year" "doi" "date"))
+  (setq orb-templates
+        '(("r" "ref" plain (function org-roam-capture--get-point)
+           ""
+           :file-name "~/org/literature/${=key=}"
+           :head "#+TITLE: ${title}-${author}-${year}
+#+ROAM_KEY: cite:${=key=}
+#+ROAM_TAGS: ${keywords}
+Time-stamp: <>
+- tags ::
 
+* NOTES
+  :PROPERTIES:
+  :Custom_ID: ${=key=}
+  :URL: ${url}
+  :AUTHOR: ${author}
+  :NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")
+  :DATE: ${date}
+  :YEAR: ${year}
+  :DOI: ${doi}
+  :END:
+
+"
+
+           :unnarrowed t)))
+  (set-popup-rule! "*CAPTURE-*" :side 'right)
+    )
+(map! :map org-mode-map
+      :localleader "]" #'orb-insert)
 (provide 'init-org)
