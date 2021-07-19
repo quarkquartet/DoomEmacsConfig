@@ -74,14 +74,11 @@
    org-ref-notes-directory bibliography-notes
    org-ref-notes-function 'orb-edit-notes
    )
-;  (setq org-ref-notes-function
-;      (lambda (thekey)
-;	(let ((bibtex-completion-bibliography (org-ref-find-bibliography)))
-;	  (bibtex-completion-edit-notes
-;	   (list (car (org-ref-get-bibtex-key-and-file thekey)))))))
   )
 (after! org-ref
+  :commands
   (org-ref-ivy-cite-completion)
+  :config
   (setq
    bibtex-completion-notes-path bibliography-notes
    bibtex-completion-bibliography bibliography-path
@@ -106,41 +103,24 @@
     ":END:\n\n")
    )
   )
+(after! org-roam
+  (org-roam-bibtex-mode))
 (use-package! org-roam-bibtex
   :after org-roam
-  :hook (org-roam-mode . org-roam-bibtex-mode)
   :config
   (require 'org-ref)
   (require 'ivy-bibtex)
   (setq orb-insert-interface 'ivy-bibtex)
   (setq orb-note-actions-interface 'ivy)
-  (setq orb-preformat-keywords
-        '("=key=" "title" "url" "file" "author" "keywords" "year" "doi" "date"))
-  (setq orb-templates
-        '(("r" "ref" plain (function org-roam-capture--get-point)
-           ""
-           :file-name "~/org/literature/${=key=}"
-           :head "#+TITLE: ${title}-${author}-${year}
-#+ROAM_KEY: cite:${=key=}
-#+ROAM_TAGS: ${keywords}
-Time-stamp: <>
-- tags ::
+  (setq orb-preformat-keywords '("citekey" "author" "date"))
+(setq org-roam-capture-templates
+      '(("r" "bibliography reference" plain
+         "%?
+%^{author} published %^{entry-type} in %^{date}: fullcite:%\\1."
+         :if-new
+         (file+head "references/${citekey}.org" "#+title: ${title}\n")
+         :unnarrowed t)))
 
-* NOTES
-  :PROPERTIES:
-  :Custom_ID: ${=key=}
-  :URL: ${url}
-  :AUTHOR: ${author}
-  :NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")
-  :DATE: ${date}
-  :YEAR: ${year}
-  :DOI: ${doi}
-  :END:
-
-"
-
-           :unnarrowed t)))
-  (set-popup-rule! "*CAPTURE-*" :side 'right)
     )
 (map! :map org-mode-map
       :localleader "]" #'orb-insert)
