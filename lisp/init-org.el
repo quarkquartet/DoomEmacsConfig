@@ -5,6 +5,7 @@
 (map! :map org-mode-map
       :localleader "M" #'cdlatex-environment)
 (after! org
+  (setq org-roam-v2-ack t)
   (setq org-agenda-files '("~/org/"))
   (setq org-image-actual-width '(500))
   (setq org-agenda-custom-commands
