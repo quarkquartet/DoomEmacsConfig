@@ -86,23 +86,21 @@
    bibtex-completion-bibliography bibliography-path
    bibtex-completion-pdf-field "file"
    bibtex-completion-notes-template-multiple-files
-   (concat
-    "#+TITLE: ${title}-${author}-${year}\n"
-    "#+ROAM_KEY: cite:${=key=}\n"
-    "#+ROAM_TAGS: ${keywords}\n"
-    "Time-stamp: <>\n"
-    "- tags :: \n"
-    "\n"
-    "* NOTES \n"
-    ":PROPERTIES:\n"
-    ":Custom_ID: ${=key=}\n"
-    ":URL: ${url}\n"
-    ":AUTHOR: ${author}\n"
-    ":NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")\n"
-    ":DATE: ${date}\n"
-    ":YEAR: ${year}\n"
-    ":DOI: ${doi}\n"
-    ":END:\n\n")
+  (concat
+   "#+TITLE: ${title}-${author}-${year}\n"
+   "#+ROAM_KEY: cite:${=key=}\n"
+   "#+ROAM_TAGS: ${keywords}\n"
+   "Time-stamp: <>\n"
+   "- tags :: \n"
+   "\n"
+   "* NOTES \n"
+   ":PROPERTIES:\n"
+   ":Custom_ID: ${=key=}\n"
+   ":URL: ${url}\n"
+   ":AUTHOR: ${author}\n"
+   ":NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")\n"
+   ":YEAR: ${year}\n"
+   ":END:\n\n")
    )
   )
 (use-package! org-roam-bibtex
@@ -114,14 +112,14 @@
   (setq orb-insert-interface 'ivy-bibtex)
   (setq orb-note-actions-interface 'ivy)
   (setq orb-preformat-keywords
-        '("=key=" "title" "url" "file" "author" "keywords" "year" "doi" "date"))
+        '("=key=" "author" "title" "month" "year" "url"))
   (setq orb-templates
         '(("r" "ref" plain (function org-roam-capture--get-point)
            ""
            :file-name "~/org/literature/${=key=}"
            :head "#+TITLE: ${title}-${author}-${year}
 #+ROAM_KEY: cite:${=key=}
-#+ROAM_TAGS: ${keywords}
+#+ROAM_TAGS:
 Time-stamp: <>
 - tags ::
 
@@ -131,9 +129,7 @@ Time-stamp: <>
   :URL: ${url}
   :AUTHOR: ${author}
   :NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")
-  :DATE: ${date}
   :YEAR: ${year}
-  :DOI: ${doi}
   :END:
 
 "
