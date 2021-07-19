@@ -108,10 +108,11 @@
 (use-package! org-roam-bibtex
   :after org-roam
   :hook (org-roam-mode . org-roam-bibtex-mode)
-  :custom
-  (orb-insert-interface 'ivy-bibtex)
-  (orb-note-actions-interface 'ivy)
   :config
+  (require 'org-ref)
+  (require 'ivy-bibtex)
+  (setq orb-insert-interface 'ivy-bibtex)
+  (setq orb-note-actions-interface 'ivy)
   (setq orb-preformat-keywords
         '("=key=" "title" "url" "file" "author" "keywords" "year" "doi" "date"))
   (setq orb-templates
