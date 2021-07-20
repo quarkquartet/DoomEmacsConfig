@@ -72,8 +72,7 @@
    org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
    org-ref-default-bibliography (list "~/org/literature/library.bib")
    org-ref-notes-directory bibliography-notes
-   org-ref-notes-function 'orb-edit-notes
-   )
+   org-ref-notes-function 'orb-org-ref-edit-note   )
   )
 (after! org-ref
   :commands
@@ -112,15 +111,13 @@
   (require 'ivy-bibtex)
   (setq orb-insert-interface 'ivy-bibtex)
   (setq orb-note-actions-interface 'ivy)
-  (setq orb-preformat-keywords '("citekey" "author" "date"))
-(setq org-roam-capture-templates
-      '(("r" "bibliography reference" plain
-         "%?
-%^{author} published %^{entry-type} in %^{date}: fullcite:%\\1."
-         :if-new
-         (file+head "references/${citekey}.org" "#+title: ${title}\n")
-         :unnarrowed t)))
-
+  (setq orb-preformat-keywords '("citekey" "author" "title" "url" "year"))
+; (setq org-roam-capture-templates
+;       '(("r" "bibliography reference" plain
+;          ""
+;          :if-new
+;          (file+head "~/org/literature/${citekey}.org" "#+TITLE: ${title}\n")
+;          :unnarrowed t)))
     )
 (map! :map org-mode-map
       :localleader "]" #'orb-insert)
