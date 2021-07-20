@@ -13,7 +13,6 @@
 
 ;; More friendly display transformer for Ivy
 (use-package! ivy-rich
-  :ensure t
   :hook ((counsel-projectile-mode . ivy-rich-mode) ; MUST after `counsel-projectile'
          (ivy-rich-mode . (lambda ()
                             "Use abbreviate in `ivy-rich-mode'."
