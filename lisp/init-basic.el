@@ -7,6 +7,7 @@
       flycheck-checker-error-threshold 5000
       org-directory "~/org/"
       org-roam-directory "~/org/"
+      org-roam-v2-ack t
       display-line-numbers-type t
       confirm-kill-emacs nil
       doom-modeline-major-mode-icon t
