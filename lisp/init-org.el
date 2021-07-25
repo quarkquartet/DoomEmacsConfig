@@ -71,60 +71,47 @@
    org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
    org-ref-default-bibliography (list "~/org/literature/library.bib")
    org-ref-notes-directory bibliography-notes
-   org-ref-notes-function 'orb-org-ref-edit-note   )
-  )
-(after! org-ref
-  :commands
-  (org-ref-ivy-cite-completion)
-  :config
+   org-ref-notes-function 'orb-org-ref-edit-note)
   (setq
    bibtex-completion-notes-path bibliography-notes
    bibtex-completion-bibliography bibliography-path
    bibtex-completion-pdf-field "file"
    )
+  (org-ref-ivy-cite-completion)
   )
 (use-package! org-roam
   :after org
-  :hook (org-load . org-roam-mode)
-  :hook (org-roam-backlinks-mode . turn-on-visual-line-mode)
-  :commands (org-roam-buffer-toggle-display
-             org-roam-dailies-find-date
-             org-roam-dailies-find-today
-             org-roam-dailies-find-tomorrow
-             org-roam-dailies-find-yesterday
-             org-roam-setup
-             org-roam-capture
-             org-roam-node-find)
   :init
-  (map! :after org
-        :map org-mode-map
-        :localleader
-        :prefix ("m" . "org-roam")
-        "b" #'org-roam-switch-to-buffer
-        "f" #'org-roam-find-file
-        "g" #'org-roam-graph
-        "i" #'org-roam-insert
-        "I" #'org-roam-insert-immediate
-        "m" #'org-roam
-        "t" #'org-roam-tag-add
-        "T" #'org-roam-tag-delete
-        (:prefix ("d" . "by date")
-         :desc "Find previous note" "b" #'org-roam-dailies-find-previous-note
-         :desc "Find date"          "d" #'org-roam-dailies-find-date
-         :desc "Find next note"     "f" #'org-roam-dailies-find-next-note
-         :desc "Find tomorrow"      "m" #'org-roam-dailies-find-tomorrow
-         :desc "Capture today"      "n" #'org-roam-dailies-capture-today
-         :desc "Find today"         "t" #'org-roam-dailies-find-today
-         :desc "Capture Date"       "v" #'org-roam-dailies-capture-date
-         :desc "Find yesterday"     "y" #'org-roam-dailies-find-yesterday
-         :desc "Find directory"     "." #'org-roam-dailies-find-directory
-         "f" #'org-roam-node-find
-        "i" #'org-roam-node-insert
-        "b" #'org-roam-buffer-toggle
-        "t" #'org-roam-tag-add
-        "T" #'org-roam-tag-remove))
+  (map!
+       :map org-mode-map
+       :localleader
+       :prefix ("m" . "org-roam")
+       "b" #'org-roam-switch-to-buffer
+       "f" #'org-roam-find-file
+       "g" #'org-roam-graph
+       "i" #'org-roam-insert
+       "I" #'org-roam-insert-immediate
+       "m" #'org-roam
+       "t" #'org-roam-tag-add
+       "T" #'org-roam-tag-delete
+       (:prefix ("d" . "by date")
+        :desc "Find previous note" "b" #'org-roam-dailies-find-previous-note
+        :desc "Find date"          "d" #'org-roam-dailies-find-date
+        :desc "Find next note"     "f" #'org-roam-dailies-find-next-note
+        :desc "Find tomorrow"      "m" #'org-roam-dailies-find-tomorrow
+        :desc "Capture today"      "n" #'org-roam-dailies-capture-today
+        :desc "Find today"         "t" #'org-roam-dailies-find-today
+        :desc "Capture Date"       "v" #'org-roam-dailies-capture-date
+        :desc "Find yesterday"     "y" #'org-roam-dailies-find-yesterday
+        :desc "Find directory"     "." #'org-roam-dailies-find-directory)
+        "f" #'org-roam-node-find
+       "i" #'org-roam-node-insert
+       "b" #'org-roam-buffer
+       "t" #'org-roam-tag-add
+       "T" #'org-roam-tag-remove)
+
   :config
-  (org-roam-setup)
+  (setq org-roam-mode-section-functions '(org-roam-backlinks-section org-roam-reflinks-section))
   (setq org-roam-db-location (or org-roam-db-location
                                  (concat doom-etc-dir "org-roam.db"))
         ;; Make org-roam buffer sticky; i.e. don't replace it when opening a
@@ -133,25 +120,36 @@
         org-roam-link-use-custom-faces 'everywhere
         org-roam-completion-everywhere t
         )
-  (add-hook 'org-roam-buffer-prepare-hook #'hide-mode-line-mode)
+  (set-popup-rules!
+    `((,(regexp-quote org-roam-buffer) ; persistent org-roam buffer
+       :side right :width .33 :height .5 :ttl nil :modeline nil :quit nil :slot 1)
+      ("^org-roam:" ; node dedicated org-roam buffer
+       :side right :width .33 :height .5 :ttl nil :modeline nil :quit nil :slot 2)))
+
+  (add-hook 'org-roam-mode-hook #'doom/toggle-line-numbers)
+  (org-roam-setup)
   )
 (after! org-roam
   (org-roam-bibtex-mode))
 (use-package! org-roam-bibtex
   :after org-roam
+  :init
+  (map! :map org-mode-map
+        :localleader "]" #'orb-insert-link)
   :config
   (require 'org-ref)
   (require 'ivy-bibtex)
-  (setq orb-insert-interface 'ivy-bibtex)
-  (setq orb-note-actions-interface 'ivy)
+  (setq orb-insert-interface 'ivy-bibtex
+        orb-note-actions-interface 'ivy
+        orb-insert-link-description 'citation
+        )
   (setq orb-preformat-keywords '("citekey" "author" "title" "url" "year"))
- (setq org-roam-capture-templates
-       '(("r" "bibliography reference" plain
-          ""
-          :if-new
-          (file+head "~/org/literature/${citekey}.org" "#+TITLE: ${title}\n #+AUTHOR: ${author}\n #+URL: ${url}\n #+YEAR: ${year}\n")
-          :unnarrowed t)))
-    )
-(map! :map org-mode-map
-      :localleader "]" #'orb-insert-link)
+  (setq org-roam-capture-templates
+        '(("r" "bibliography reference" plain
+           ""
+           :if-new
+           (file+head "~/org/literature/${citekey}.org" "#+TITLE: ${title}\n #+AUTHOR: ${author}\n #+URL: ${url}\n #+YEAR: ${year}\n")
+           :unnarrowed t)))
+  )
+
 (provide 'init-org)
