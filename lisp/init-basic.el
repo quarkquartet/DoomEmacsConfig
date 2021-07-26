@@ -7,6 +7,7 @@
       flycheck-checker-error-threshold 5000
       org-directory "~/org/"
       org-roam-directory "~/org/"
+      org-roam-v2-ack t
       display-line-numbers-type t
       confirm-kill-emacs nil
       doom-modeline-major-mode-icon t
@@ -57,7 +58,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t)
   (if (display-graphic-p)
-      (load-theme 'kaolin-aurora t)
+      (load-theme 'doom-solarized-dark t)
     (load-theme 'doom-molokai t))
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)

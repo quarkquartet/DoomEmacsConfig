@@ -71,72 +71,36 @@
    org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
    org-ref-default-bibliography (list "~/org/literature/library.bib")
    org-ref-notes-directory bibliography-notes
-   org-ref-notes-function 'orb-edit-notes
-   )
-;  (setq org-ref-notes-function
-;      (lambda (thekey)
-;	(let ((bibtex-completion-bibliography (org-ref-find-bibliography)))
-;	  (bibtex-completion-edit-notes
-;	   (list (car (org-ref-get-bibtex-key-and-file thekey)))))))
-  )
-(after! org-ref
-  (org-ref-ivy-cite-completion)
+   org-ref-notes-function 'orb-org-ref-edit-note)
   (setq
    bibtex-completion-notes-path bibliography-notes
    bibtex-completion-bibliography bibliography-path
    bibtex-completion-pdf-field "file"
-   bibtex-completion-notes-template-multiple-files
-  (concat
-   "#+TITLE: ${title}-${author}-${year}\n"
-   "#+ROAM_KEY: cite:${=key=}\n"
-   "#+ROAM_TAGS: ${keywords}\n"
-   "Time-stamp: <>\n"
-   "- tags :: \n"
-   "\n"
-   "* NOTES \n"
-   ":PROPERTIES:\n"
-   ":Custom_ID: ${=key=}\n"
-   ":URL: ${url}\n"
-   ":AUTHOR: ${author}\n"
-   ":NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")\n"
-   ":YEAR: ${year}\n"
-   ":END:\n\n")
    )
+  (org-ref-ivy-cite-completion)
   )
+(add-hook! 'org-roam-mode-hook #'doom/toggle-line-numbers)
+(after! org-roam
+  (org-roam-bibtex-mode))
 (use-package! org-roam-bibtex
   :after org-roam
-  :hook (org-roam-mode . org-roam-bibtex-mode)
+  :init
+  (map! :map org-mode-map
+        :localleader "]" #'orb-insert-link)
   :config
   (require 'org-ref)
   (require 'ivy-bibtex)
-  (setq orb-insert-interface 'ivy-bibtex)
-  (setq orb-note-actions-interface 'ivy)
-  (setq orb-preformat-keywords
-        '("=key=" "author" "title" "month" "year" "url"))
-  (setq orb-templates
-        '(("r" "ref" plain (function org-roam-capture--get-point)
+  (setq orb-insert-interface 'ivy-bibtex
+        orb-note-actions-interface 'ivy
+        orb-insert-link-description 'citation
+        )
+  (setq orb-preformat-keywords '("citekey" "author" "title" "url" "year"))
+  (setq org-roam-capture-templates
+        '(("r" "bibliography reference" plain
            ""
-           :file-name "~/org/literature/${=key=}"
-           :head "#+TITLE: ${title}-${author}-${year}
-#+ROAM_KEY: cite:${=key=}
-#+ROAM_TAGS:
-Time-stamp: <>
-- tags ::
-
-* NOTES
-  :PROPERTIES:
-  :Custom_ID: ${=key=}
-  :URL: ${url}
-  :AUTHOR: ${author}
-  :NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")
-  :YEAR: ${year}
-  :END:
-
-"
-
+           :if-new
+           (file+head "~/org/literature/${citekey}.org" "#+TITLE: ${title}\n #+AUTHOR: ${author}\n #+URL: ${url}\n #+YEAR: ${year}\n")
            :unnarrowed t)))
-  (set-popup-rule! "*CAPTURE-*" :side 'right)
-    )
-(map! :map org-mode-map
-      :localleader "]" #'orb-insert)
+  )
+
 (provide 'init-org)
