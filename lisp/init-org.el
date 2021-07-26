@@ -79,56 +79,7 @@
    )
   (org-ref-ivy-cite-completion)
   )
-(use-package! org-roam
-  :after org
-  :init
-  (map!
-       :map org-mode-map
-       :localleader
-       :prefix ("m" . "org-roam")
-       "b" #'org-roam-switch-to-buffer
-       "f" #'org-roam-find-file
-       "g" #'org-roam-graph
-       "i" #'org-roam-insert
-       "I" #'org-roam-insert-immediate
-       "m" #'org-roam
-       "t" #'org-roam-tag-add
-       "T" #'org-roam-tag-delete
-       (:prefix ("d" . "by date")
-        :desc "Find previous note" "b" #'org-roam-dailies-find-previous-note
-        :desc "Find date"          "d" #'org-roam-dailies-find-date
-        :desc "Find next note"     "f" #'org-roam-dailies-find-next-note
-        :desc "Find tomorrow"      "m" #'org-roam-dailies-find-tomorrow
-        :desc "Capture today"      "n" #'org-roam-dailies-capture-today
-        :desc "Find today"         "t" #'org-roam-dailies-find-today
-        :desc "Capture Date"       "v" #'org-roam-dailies-capture-date
-        :desc "Find yesterday"     "y" #'org-roam-dailies-find-yesterday
-        :desc "Find directory"     "." #'org-roam-dailies-find-directory)
-        "f" #'org-roam-node-find
-       "i" #'org-roam-node-insert
-       "b" #'org-roam-buffer
-       "t" #'org-roam-tag-add
-       "T" #'org-roam-tag-remove)
-
-  :config
-  (setq org-roam-mode-section-functions '(org-roam-backlinks-section org-roam-reflinks-section))
-  (setq org-roam-db-location (or org-roam-db-location
-                                 (concat doom-etc-dir "org-roam.db"))
-        ;; Make org-roam buffer sticky; i.e. don't replace it when opening a
-        ;; file with an *-other-window command.
-        org-roam-buffer-window-parameters '((no-delete-other-windows . t))
-        org-roam-link-use-custom-faces 'everywhere
-        org-roam-completion-everywhere t
-        )
-  (set-popup-rules!
-    `((,(regexp-quote org-roam-buffer) ; persistent org-roam buffer
-       :side right :width .33 :height .5 :ttl nil :modeline nil :quit nil :slot 1)
-      ("^org-roam:" ; node dedicated org-roam buffer
-       :side right :width .33 :height .5 :ttl nil :modeline nil :quit nil :slot 2)))
-
-  (add-hook 'org-roam-mode-hook #'doom/toggle-line-numbers)
-  (org-roam-setup)
-  )
+(add-hook! 'org-roam-mode-hook #'doom/toggle-line-numbers)
 (after! org-roam
   (org-roam-bibtex-mode))
 (use-package! org-roam-bibtex

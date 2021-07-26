@@ -31,7 +31,7 @@
 ;; english font
   (if (display-graphic-p)
       (progn
-        (set-face-attribute 'default nil :font (font-spec :family "Fira Code" :size 13))
+        (set-face-attribute 'default nil :font (font-spec :family "MonacoB" :size 13))
         ;(set-fontset-font t 'unicode (font-spec :family "MesloLGS Nerd Font Mono") nil 'prepend)
         (setq doom-unicode-font (font-spec :family "SFMono Nerd Font"))
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
@@ -58,7 +58,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t)
   (if (display-graphic-p)
-      (load-theme 'kaolin-ocean t)
+      (load-theme 'doom-solarized-dark t)
     (load-theme 'doom-molokai t))
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
