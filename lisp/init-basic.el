@@ -3,6 +3,7 @@
 (setq user-full-name "Isaac Wang"
       user-mail-address "hepisaacf@gmail.com"
       company-idle-delay 0.1
+      evil-insert-state-cursor '(box "Green")
       company-minimum-prefix-length 2
       flycheck-checker-error-threshold 5000
       org-directory "~/org/"
@@ -31,15 +32,15 @@
 ;; english font
   (if (display-graphic-p)
       (progn
-        (set-face-attribute 'default nil :font (font-spec :family "MonacoB" :size 13))
+        (set-face-attribute 'default nil :font (font-spec :family "Menlo" :size 13))
         ;(set-fontset-font t 'unicode (font-spec :family "MesloLGS Nerd Font Mono") nil 'prepend)
-        (setq doom-unicode-font (font-spec :family "SFMono Nerd Font"))
+        (setq doom-unicode-font (font-spec :family "MesloLGS Nerd Font Mono"))
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
                             charset
                             (font-spec :family "STHeiti" :size 14)))
         (dolist (charset '(?\x25C9 ?\x25CB ?\x2738 ?\x273F))
-          (set-fontset-font nil charset (font-spec :family "SFMono Nerd Font" :size 13)))) ;; 14 16 20 22 28
+          (set-fontset-font nil charset (font-spec :family "MesloLGS Nerd Font Mono" :size 13)))) ;; 14 16 20 22 28
 ))
 
 (defun +my|init-font(frame)
