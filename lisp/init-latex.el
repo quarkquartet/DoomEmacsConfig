@@ -2,6 +2,8 @@
 (map! :after cdlatex
       :map cdlatex-mode-map
       "TAB" 'cdlatex-tab)
+(add-hook! 'latex-mode-hook
+  (setq-local line-spacing 0.35))
 (after! latex
 (use-package! reftex
   :config

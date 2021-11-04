@@ -56,7 +56,6 @@
 (require 'init-lsp)
 (require 'init-ivy)
 (require 'init-company)
-(require 'init-eaf)
 (require 'init-org)
 (require 'init-python)
 (require 'init-latex)

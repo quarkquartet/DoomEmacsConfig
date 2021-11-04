@@ -11,12 +11,6 @@
 (package! kaolin-themes)
 (package! all-the-icons-ivy-rich)
 ;(package! pdf-continuous-scroll-mode :recipe (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
-(package! eaf
-  :recipe (:host github :repo "manateelazycat/emacs-application-framework" :files ("*")))
-(package! ctable)
-(package! deferred)
-(package! epc)
-(package! s)
 ;(package! org-ref)
 (package! org-roam-bibtex
   :recipe (:host github :repo "org-roam/org-roam-bibtex"))
