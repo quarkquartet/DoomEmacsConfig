@@ -1,8 +1,3 @@
-;;; lisp/init-ivy.el -*- lexical-binding: t; -*-
-
-;; Better experience with icons
-;; Enable it before`ivy-rich-mode' for better performance
-
 (when (icons-displayable-p)
 (use-package! all-the-icons-ivy-rich
   ;:ensure t

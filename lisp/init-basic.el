@@ -1,14 +1,10 @@
-;;; lisp/init-basic.el -*- lexical-binding: t; -*-
-
 (setq user-full-name "Isaac Wang"
-      user-mail-address "hepisaacf@gmail.com"
+      user-mail-address "isaac.wang.us@gmail.com"
       company-idle-delay 0.1
-      evil-insert-state-cursor '(box "Green")
       company-minimum-prefix-length 2
       flycheck-checker-error-threshold 5000
       org-directory "~/org/"
       org-roam-directory "~/org/"
-      org-roam-v2-ack t
       display-line-numbers-type t
       confirm-kill-emacs nil
       doom-modeline-major-mode-icon t
@@ -23,6 +19,7 @@
       treemacs-width 32)
 (+global-word-wrap-mode +1)
 
+
 ;; ========================================
 ;; font 中文字体
 ;; ========================================
@@ -31,15 +28,15 @@
 ;; english font
   (if (display-graphic-p)
       (progn
-        (set-face-attribute 'default nil :font (font-spec :family "MonacoB" :size 13))
+        (set-face-attribute 'default nil :font (font-spec :family "MonacoB" :size 12))
         ;(set-fontset-font t 'unicode (font-spec :family "MesloLGS Nerd Font Mono") nil 'prepend)
         (setq doom-unicode-font (font-spec :family "Monaco Nerd Font Mono"))
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
                             charset
-                            (font-spec :family "STHeiti" :size 14)))
+                            (font-spec :family "STHeiti" :size 13)))
         (dolist (charset '(?\x25C9 ?\x25CB ?\x2738 ?\x273F))
-          (set-fontset-font nil charset (font-spec :family "Monaco Nerd Font Mono" :size 13)))) ;; 14 16 20 22 28
+          (set-fontset-font nil charset (font-spec :family "Monaco Nerd Font Mono" :size 12)))) ;; 14 16 20 22 28
 ))
 
 (defun +my|init-font(frame)
@@ -50,6 +47,8 @@
 (if (and (fboundp 'daemonp) (daemonp))
   (add-hook 'after-make-frame-functions #'+my|init-font)
  (+my/better-font))
+
+
 ;; ========================================
 ;; Themes
 ;; ========================================
@@ -66,9 +65,6 @@
   (doom-themes-treemacs-config)
   )
 (setq org-hide-leading-stars t)
-;;(use-package! kaolin-themes
-;;  :config
-;;  (kaolin-treemacs-theme))
 
 ;; ========================================
 ;; Highlight-indent guide
@@ -80,25 +76,11 @@
       (highlight-indent-guides--highlighter-default level responsive display)))
   (setq highlight-indent-guides-highlighter-function #'+indent-guides-for-all-but-first-column)
   )
-
-;; ========================================
-;; Treemacs
-;; ========================================
-
-(global-set-key (kbd "M-0") 'treemacs-select-window)
-
-;; ========================================
-;; PDF View Mode
-;; ========================================
-;;add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode)
-;;map! :after pdf-sync
-;;     "C-c j" 'pdf-sync-forward-search)
 ;; ========================================
 ;; stop completing english word
 ;; ========================================
 (set-company-backend! 'text-mode '(:separate company-yasnippet))
 (after! company
   (add-to-list 'company-backends 'company-files))
-
 
 (provide 'init-basic)

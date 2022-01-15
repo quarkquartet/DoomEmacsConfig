@@ -1,10 +1,9 @@
-;;; lisp/init-org.el -*- lexical-binding: t; -*-
-
 (add-hook! 'org-mode-hook
   (setq-local line-spacing 0.45))
 (map! :map org-mode-map
       :localleader "M" #'cdlatex-environment)
 (after! org
+  (setq org-enforce-todo-dependencies nil)
   (setq org-agenda-files '("~/org/"))
   (setq org-image-actual-width '(500))
   (setq org-agenda-custom-commands
@@ -22,7 +21,7 @@
             ))
           ))
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "DOING(s)" "WAIT(w)" "|" "DONE(d!)" "CANCELED(c @/!)")))
+        '((sequence "TODO(t)" "DOING(s)" "WAIT(w)" "|" "DONE(d)" "CANCELED(c)")))
   (setq org-todo-keyword-faces
         '(
           ("TODO"  .   (:foreground "red" :weight bold))
@@ -44,12 +43,11 @@
   ;; 绑定键位
   (defvar org-agenda-dir "" "gtd org files location")
   (setq-default org-agenda-dir "~/org/")
-  (setq org-agenda-file-log (expand-file-name "2021.org" org-agenda-dir))
-  (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
+  (setq org-agenda-file-gtd (expand-file-name "main.org" org-agenda-dir))
   (setq org-clock-clocktable-default-properties
         '(:link t :maxlevel 6 :fileskip0 t :compact nil :narrow 60 :score 0 :scope agenda-with-archives))
-  (setq org-refile-targets (quote ((nil :maxlevel . 9)
-                                   (org-agenda-file-log :maxlevel . 9))))
+  ;(setq org-refile-targets (quote ((nil :maxlevel . 9)
+  ;                                 (org-agenda-file-log :maxlevel . 9))))
   (setq org-refile-use-outline-path t)
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-allow-creating-parent-nodes (quote confirm))
@@ -57,19 +55,21 @@
   (setq org-startup-with-latex-preview t)
   )
 
+
 ;;---------------------------
-;; Org-ref-bibtex
+;; Org-roam-bibtex
 ;;---------------------------
+;;
 (setq bibliography-path "~/org/literature/library.bib")
-(setq pdf-path "~/Dropbox/Zotero\ Papers")
 (setq bibliography-notes "~/org/literature/")
+
 (use-package! org-ref
   :after org
   :config
+  (require 'org-ref-ivy)
   (setq
-   org-ref-completion-library 'org-ref-ivy-cite
-   org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
-   org-ref-default-bibliography (list "~/org/literature/library.bib")
+   org-ref-insert-link-function 'org-ref-ivy-insert-cite-link
+   org-ref-default-bibliography bibliography-path
    org-ref-notes-directory bibliography-notes
    org-ref-notes-function 'orb-org-ref-edit-note)
   (setq
@@ -79,7 +79,12 @@
    )
   (org-ref-ivy-cite-completion)
   )
-(add-hook! 'org-roam-mode-hook #'doom/toggle-line-numbers)
+(use-package! ivy-bibtex
+  :after org-ref
+  :config
+  (setq ivy-bibtex-default-action 'ivy-bibtex-insert-citation))
+
+
 (after! org-roam
   (org-roam-bibtex-mode))
 (use-package! org-roam-bibtex
@@ -89,10 +94,10 @@
         :localleader "]" #'orb-insert-link)
   :config
   (require 'org-ref)
-  (require 'ivy-bibtex)
-  (setq orb-insert-interface 'ivy-bibtex
-        orb-note-actions-interface 'ivy
-        orb-insert-link-description 'citation
+  (setq!
+   orb-insert-interface 'ivy-bibtex
+   orb-note-actions-interface 'ivy
+   orb-insert-link-description 'citation-org-ref-2
         )
   (setq orb-preformat-keywords '("citekey" "author" "title" "url" "year"))
   (setq org-roam-capture-templates
