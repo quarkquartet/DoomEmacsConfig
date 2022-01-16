@@ -60,3 +60,4 @@
 (require 'init-python)
 (require 'init-latex)
 (require 'init-markdown)
+(require 'init-eaf)

@@ -5,11 +5,11 @@
 (add-hook! 'latex-mode-hook
   (setq-local line-spacing 0.35))
 (after! latex
-(use-package! reftex
-  :config
+  (add-to-list 'TeX-view-program-list '("eaf" eaf-pdf-synctex-forward-view))
+(add-to-list 'TeX-view-program-selection '(output-pdf "eaf"))
   (setq reftex-plug-into-AUCTeX '(nil nil t t t))
-  ))
-(setq +latex-viewers '(skim))
+  )
+;;(setq +latex-viewers '(skim))
 (setq LaTeX-clean-intermediate-suffixes '("\\.aux" "\\.blg" "\\.brf" "\\.fot" "\\.glo"
 "\\.gls"  "\\.idx" "\\.ilg" "\\.ind" "\\.lof" "\\.log"
 "\\.lot"  "\\.nav" "\\.out" "\\.snm" "\\.toc" "\\.url"
