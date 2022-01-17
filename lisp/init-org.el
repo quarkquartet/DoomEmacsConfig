@@ -77,11 +77,20 @@
    bibtex-completion-bibliography bibliography-path
    bibtex-completion-pdf-field "file"
    )
-  (org-ref-ivy-cite-completion)
   )
+(defun +IRW/bibtex-completion-format-citation-org-cite (keys)
+    "Format org-links using Org-ref citation"
+  (s-join ", "
+          (--map (format "cite:%s" it) keys)))
 (use-package! ivy-bibtex
   :after org-ref
   :config
+  (setq bibtex-completion-format-citation-functions '((org-mode . +IRW/bibtex-completion-format-citation-org-cite)
+                                                       (latex-mode    . bibtex-completion-format-citation-cite)
+                                                       (markdown-mode . bibtex-completion-format-citation-pandoc-citeproc)
+                                                       (python-mode   . bibtex-completion-format-citation-sphinxcontrib-bibtex)
+                                                       (rst-mode      . bibtex-completion-format-citation-sphinxcontrib-bibtex)
+                                                       (default       . bibtex-completion-format-citation-default)))
   (setq ivy-bibtex-default-action 'ivy-bibtex-insert-citation))
 
 
