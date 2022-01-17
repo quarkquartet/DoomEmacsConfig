@@ -15,10 +15,8 @@
       lsp-modeline-code-actions-enable nil
       lsp-eldoc-enable-hover nil
       lsp-modeline-diagnostics-enable nil
-      git-gutter-fringe t
       treemacs-width 32)
 (+global-word-wrap-mode +1)
-
 
 ;; ========================================
 ;; font 中文字体
@@ -55,10 +53,7 @@
 (use-package! doom-themes
   :config
   ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t)
-  (if (display-graphic-p)
-      (load-theme 'doom-one t)
-    (load-theme 'doom-molokai t))
+  (setq doom-theme 'doom-moonlight)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
   (setq doom-themes-treemacs-theme "doom-colors")
