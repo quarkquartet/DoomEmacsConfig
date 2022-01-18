@@ -80,4 +80,9 @@
 (after! company
   (add-to-list 'company-backends 'company-files))
 
+;; ========================================
+;; Treemacs
+;; ========================================
+(map! :desc "Switch cursor between treemacs and other window" :g "M-0" #'treemacs-select-window)
+
 (provide 'init-basic)
