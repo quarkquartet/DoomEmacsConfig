@@ -10,6 +10,8 @@
       doom-modeline-major-mode-icon t
       doom-modeline-lsp nil
       +org-roam-open-buffer-on-find-file nil
+      lsp-ui-sideline-enable nil
+      lsp-ui-doc-enable nil
       lsp-signature-auto-activate nil
       lsp-file-watch-threshold 5000
       lsp-modeline-code-actions-enable nil
@@ -32,7 +34,7 @@
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
                             charset
-                            (font-spec :family "STHeiti" :size 14)))
+                            (font-spec :family "STKaiti" :size 14)))
         (dolist (charset '(?\x25C9 ?\x25CB ?\x2738 ?\x273F))
           (set-fontset-font nil charset (font-spec :family "Monaco Nerd Font Mono" :size 12)))) ;; 14 16 20 22 28
 ))

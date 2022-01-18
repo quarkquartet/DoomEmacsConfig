@@ -54,7 +54,6 @@
 ;;
 (require 'init-func)
 (require 'init-basic)
-(require 'init-lsp)
 (require 'init-ivy)
 (require 'init-company)
 (require 'init-org)
