@@ -53,6 +53,7 @@
   (setq org-refile-allow-creating-parent-nodes (quote confirm))
   (setq org-format-latex-options '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
   (setq org-startup-with-latex-preview t)
+  (setq warning-suppress-types '((org-element-cache)))
   )
 
 
@@ -91,7 +92,9 @@
                                                        (python-mode   . bibtex-completion-format-citation-sphinxcontrib-bibtex)
                                                        (rst-mode      . bibtex-completion-format-citation-sphinxcontrib-bibtex)
                                                        (default       . bibtex-completion-format-citation-default)))
-  (setq ivy-bibtex-default-action 'ivy-bibtex-insert-citation))
+  (setq ivy-bibtex-default-action 'ivy-bibtex-insert-citation
+        ivy-bibtex-default-multi-action 'ivy-bibtex-insert-citation)
+  )
 
 
 (after! org-roam
@@ -99,8 +102,6 @@
 (use-package! org-roam-bibtex
   :after org-roam
   :init
-  (map! :map org-mode-map
-        :localleader "]" #'orb-insert-link)
   :config
   (require 'org-ref)
   (setq!
@@ -116,5 +117,7 @@
            (file+head "~/org/literature/${citekey}.org" "#+TITLE: ${title}\n #+AUTHOR: ${author}\n #+URL: ${url}\n #+YEAR: ${year}\n")
            :unnarrowed t)))
   )
+(map! :map org-mode-map
+        :localleader "]" #'orb-insert-link)
 
 (provide 'init-org)

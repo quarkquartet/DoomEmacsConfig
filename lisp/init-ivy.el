@@ -2,6 +2,7 @@
 (use-package! all-the-icons-ivy-rich
   ;:ensure t
   :hook (ivy-mode . all-the-icons-ivy-rich-mode)
+  :config
   (all-the-icons-ivy-rich-reload))
   )
 
@@ -17,12 +18,15 @@
   ;; For better performance
   ;(ivy-rich-mode 1)
   (setq ivy-rich-parse-remote-buffer nil))
-;;(use-package! all-the-icons-ivy-rich
-;;  :ensure t
-;;  :init (all-the-icons-ivy-rich-mode 1))
-;;
-;;(use-package! ivy-rich
-;;  :ensure t
-;;  :init (ivy-rich-mode 1))
+;(use-package! all-the-icons-ivy-rich
+;  :ensure t
+;  :init (all-the-icons-ivy-rich-mode 1))
+;
+;(use-package! ivy-rich
+;  :ensure t
+;  :init (ivy-rich-mode 1))
+(after! counsel-projectile
+  (all-the-icons-ivy-rich-reload))
+
 
 (provide 'init-ivy)

@@ -10,7 +10,7 @@
 (add-to-list 'default-frame-alist '(left . 600))
 (add-to-list 'default-frame-alist '(width . 93))
 (add-to-list 'default-frame-alist '(height . 47))
-(add-to-list 'default-frame-alist '(alpha . 90))
+;(add-to-list 'default-frame-alist '(alpha . 90))
 (add-to-list 'load-path (expand-file-name "~/.doom.d/lisp"))
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -60,4 +60,5 @@
 (require 'init-python)
 (require 'init-latex)
 (require 'init-markdown)
+(require 'init-cc)
 (require 'init-eaf)
