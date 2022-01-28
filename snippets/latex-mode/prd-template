@@ -23,6 +23,11 @@
 \usepackage{siunitx}
 
 \renewcommand{\baselinestretch}{1.2}
+\newcommand{\iw}[1]{{\color{blue} IW: \bf #1}}
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\gev}{\mathrm{GeV}}
+\newcommand{\tev}{\mathrm{TeV}}
+\renewcommand{\vev}[1]{ \left\langle {#1} \right\rangle }
 
 % Document lengths.
 \AtBeginDocument{
@@ -48,7 +53,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \author{Isaac R. Wang}
 \email{isaac.wang@rutgers.edu}
-\affiliation{New High Energy Theory Center, Rutgers, the State University of New Jersey, Piscataway, New Jersey 08854-8019 USA}
+\affiliation{New High Energy Theory Center, Rutgers University, Piscataway, New Jersey 08854-8019 USA}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -39,7 +39,7 @@
           (?B . (:background "DarkOrange" :foreground "white" :weight bold))
           (?C . (:background "yellow" :foreground "DarkGreen" :weight bold))
           ))
-  (setq org-enforce-todo-dependencies t)
+  ;(setq org-enforce-todo-dependencies t)
   ;; 绑定键位
   (defvar org-agenda-dir "" "gtd org files location")
   (setq-default org-agenda-dir "~/org/")
