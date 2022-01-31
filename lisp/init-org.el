@@ -4,7 +4,7 @@
       :localleader "M" #'cdlatex-environment)
 (after! org
   (setq org-enforce-todo-dependencies nil)
-  (setq org-agenda-files '("~/org/"))
+  (setq org-agenda-files '("~/org/main.org"))
   (setq org-image-actual-width '(500))
   (setq org-agenda-custom-commands
         '(
@@ -39,14 +39,17 @@
           (?B . (:background "DarkOrange" :foreground "white" :weight bold))
           (?C . (:background "yellow" :foreground "DarkGreen" :weight bold))
           ))
-  ;(setq org-enforce-todo-dependencies t)
+  (setq org-enforce-todo-dependencies t)
   ;; 绑定键位
-  (defvar org-agenda-dir "" "gtd org files location")
-  (setq-default org-agenda-dir "~/org/")
-  (setq org-agenda-file-gtd (expand-file-name "main.org" org-agenda-dir))
-  (setq org-clock-clocktable-default-properties
-        '(:link t :maxlevel 6 :fileskip0 t :compact nil :narrow 60 :score 0 :scope agenda-with-archives))
-  ;(setq org-refile-targets (quote ((nil :maxlevel . 9)
+  (setq org-log-file-dir (expand-file-name "log" org-directory))
+  (setq org-log-files (file-expand-wildcards (concat org-log-file-dir "/*.org")))
+  (defun clock-range-files () org-agenda-files
+         (append org-agenda-files org-log-files))
+   (setq org-clock-clocktable-default-properties
+        '(:link t :maxlevel 6 :fileskip0 t :compact nil :narrow 60 :score 0 :scope clock-range-files))
+  (setq org-refile-targets '((nil :maxlevel . 9)
+                             (org-log-files :maxlevel . 9)))
+ ; (setq org-refile-targets (quote ((nil :maxlevel . 9)
   ;                                 (org-agenda-file-log :maxlevel . 9))))
   (setq org-refile-use-outline-path t)
   (setq org-outline-path-complete-in-steps nil)
