@@ -39,7 +39,7 @@
           (?B . (:background "DarkOrange" :foreground "white" :weight bold))
           (?C . (:background "yellow" :foreground "DarkGreen" :weight bold))
           ))
-  (setq org-enforce-todo-dependencies t)
+  ;(setq org-enforce-todo-dependencies t)
   ;; 绑定键位
   (setq org-log-file-dir (expand-file-name "log" org-directory))
   (setq org-log-files (file-expand-wildcards (concat org-log-file-dir "/*.org")))
