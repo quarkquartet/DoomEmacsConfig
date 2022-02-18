@@ -66,11 +66,9 @@
 ;;
 (setq bibliography-path "~/org/literature/library.bib")
 (setq bibliography-notes "~/org/literature/")
-
 (use-package! org-ref
   :after org
   :config
-  (require 'org-ref-ivy)
   (setq
    org-ref-insert-link-function 'org-ref-ivy-insert-cite-link
    org-ref-default-bibliography bibliography-path
@@ -86,6 +84,7 @@
     "Format org-links using Org-ref citation"
   (s-join ", "
           (--map (format "cite:%s" it) keys)))
+
 (use-package! ivy-bibtex
   :after org-ref
   :config
@@ -98,13 +97,44 @@
   (setq ivy-bibtex-default-action 'ivy-bibtex-insert-citation
         ivy-bibtex-default-multi-action 'ivy-bibtex-insert-citation)
   )
+(after! ivy-bibtex
+  (defun ivy-bibtex (&optional arg local-bib)
+  "Search BibTeX entries using ivy.
 
+With a prefix ARG the cache is invalidated and the bibliography
+reread.
+
+If LOCAL-BIB is non-nil, display that the BibTeX entries are read
+from the local bibliography.  This is set internally by
+`ivy-bibtex-with-local-bibliography'."
+  (interactive "P")
+  (when arg
+    (bibtex-completion-clear-cache))
+  (bibtex-completion-init)
+  (let* ((candidates (mapcar (lambda (entry)
+			       (cons (bibtex-completion-format-entry entry (1- (frame-width)))
+				     (cdr entry)))
+			     (bibtex-completion-candidates)))
+         (key (bibtex-completion-key-at-point))
+         (preselect (and key
+                         (cl-position-if (lambda (cand)
+                                           (member (cons "=key=" key)
+                                                   (cdr cand)))
+                                         candidates))))
+    (ivy-read (format "BibTeX entries%s: " (if local-bib " (local)" ""))
+              candidates
+              :preselect preselect
+              :caller 'ivy-bibtex
+              :history 'ivy-bibtex-history
+              :action ivy-bibtex-default-action
+              :multi-action ivy-bibtex-default-multi-action
+              :keymap (when ivy-bibtex-use-extra-keymap ivy-bibtex-extra-keymap))))
+)
 
 (after! org-roam
   (org-roam-bibtex-mode))
 (use-package! org-roam-bibtex
   :after org-roam
-  :init
   :config
   (require 'org-ref)
   (setq!
@@ -122,5 +152,4 @@
   )
 (map! :map org-mode-map
         :localleader "]" #'orb-insert-link)
-
 (provide 'init-org)

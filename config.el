@@ -59,6 +59,6 @@
 (require 'init-org)
 (require 'init-python)
 (require 'init-latex)
-(require 'init-markdown)
+;(require 'init-markdown)
 (require 'init-cc)
-(require 'init-eaf)
+;(require 'init-eaf)

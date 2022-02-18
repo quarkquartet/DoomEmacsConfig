@@ -54,4 +54,3 @@
 (package! org-ref)
 (unpin! org-roam)
 (unpin! ivy-bibtex)
-(package! spacemacs-theme)
