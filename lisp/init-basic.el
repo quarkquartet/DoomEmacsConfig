@@ -23,37 +23,35 @@
 ;; ========================================
 ;; font 中文字体
 ;; ========================================
-;;(defun +my/better-font()
-;;  (interactive)
-;;;; english font
-;;  (if (display-graphic-p)
-;;      (progn
-;;        (set-face-attribute 'default nil :font (font-spec :family "SFMono Nerd Font" :size 13))
-;;        ;(set-fontset-font t 'unicode (font-spec :family "MesloLGS Nerd Font Mono") nil 'prepend)
-;;        (setq doom-unicode-font (font-spec :family "SFMono Nerd Font"))
-;;        (dolist (charset '(kana han symbol cjk-misc bopomofo))
-;;          (set-fontset-font (frame-parameter nil 'font)
-;;                            charset
-;;                            (font-spec :family "STKaiti" :size 14)))
-;;        (dolist (charset '(?\x25C9 ?\x25CB ?\x2738 ?\x273F))
-;;          (set-fontset-font nil charset (font-spec :family "SFMono Nerd Font" :size 13)))) ;; 14 16 20 22 28
-;;))
-
 (defun +my/better-font()
   (interactive)
 ;; english font
   (if (display-graphic-p)
       (progn
-        (set-face-attribute 'default nil :font (font-spec :family "MonacoB" :size 12))
-        ;(set-fontset-font t 'unicode (font-spec :family "MesloLGS Nerd Font Mono") nil 'prepend)
-        (setq doom-unicode-font (font-spec :family "Monaco Nerd Font Mono"))
+        (set-face-attribute 'default nil :font (font-spec :family "JetBrainsMono Nerd Font" :size 12))
+        (setq doom-unicode-font (font-spec :family "DejaVu Sans Mono Nerd Font" :size 13))
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
                             charset
                             (font-spec :family "STKaiti" :size 14)))
-        (dolist (charset '(?\x25C9 ?\x25CB ?\x2738 ?\x273F))
-          (set-fontset-font nil charset (font-spec :family "Monaco Nerd Font Mono" :size 12)))) ;; 14 16 20 22 28
+          ) ;; 14 16 20 22 28
 ))
+
+;;(defun +my/better-font()
+;;  (interactive)
+;;;; english font
+;;  (if (display-graphic-p)
+;;      (progn
+;;        (set-face-attribute 'default nil :font (font-spec :family "MonacoB" :size 12))
+;;        ;(set-fontset-font t 'unicode (font-spec :family "MesloLGS Nerd Font Mono") nil 'prepend)
+;;        (setq doom-unicode-font (font-spec :family "Monaco Nerd Font Mono"))
+;;        (dolist (charset '(kana han symbol cjk-misc bopomofo))
+;;          (set-fontset-font (frame-parameter nil 'font)
+;;                            charset
+;;                            (font-spec :family "STKaiti" :size 14)))
+;;        (dolist (charset '(?\x25C9 ?\x25CB ?\x2738 ?\x273F))
+;;          (set-fontset-font nil charset (font-spec :family "Monaco Nerd Font Mono" :size 12)))) ;; 14 16 20 22 28
+;;))
 
 
 (defun +my|init-font(frame)
@@ -72,7 +70,7 @@
 (use-package! doom-themes
   :config
   ;; Global settings (defaults)
-  (setq doom-theme 'doom-one)
+  (setq doom-theme 'doom-dracula)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
   (setq doom-themes-treemacs-theme "doom-colors")

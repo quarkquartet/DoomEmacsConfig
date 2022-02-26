@@ -15,7 +15,8 @@
   ;; For better performance
   (setq ivy-rich-parse-remote-buffer nil)
   :config
-  (all-the-icons-ivy-rich-mode 1))
+  (all-the-icons-ivy-rich-mode 1)
+  )
 (after! counsel-projectile
   (all-the-icons-ivy-rich-reload))
 (provide 'init-ivy)
