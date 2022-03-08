@@ -2,6 +2,9 @@
   (setq-local line-spacing 0.45))
 (map! :map org-mode-map
       :localleader "M" #'cdlatex-environment)
+(setq org-preview-latex-default-process 'dvisvgm)
+
+
 (after! org
   (setq org-enforce-todo-dependencies nil)
   (setq org-agenda-files '("~/org/main.org"))
@@ -54,9 +57,11 @@
   (setq org-refile-use-outline-path t)
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-allow-creating-parent-nodes (quote confirm))
-  (setq org-format-latex-options '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
   (setq org-startup-with-latex-preview t)
   (setq warning-suppress-types '((org-element-cache)))
+  (plist-put org-format-latex-options :scale 1.8)
+
+;  (plist-put org-format-latex-options :background "Transparent")
   )
 
 

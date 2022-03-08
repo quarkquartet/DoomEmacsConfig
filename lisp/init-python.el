@@ -10,7 +10,7 @@
 
 (use-package! lsp-pyright
  :config
- (setq lsp-pyright-venv-path '(expand-file-name "~/envs/py37"))
+ (setq lsp-pyright-venv-path '(expand-file-name "~/envs/py386"))
  )
  )
 (defun my-python-checker ()
