@@ -48,9 +48,10 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
-(package! all-the-icons-ivy-rich)
+;(package! all-the-icons-ivy-rich)
 (package! org-roam-bibtex
   :recipe (:host github :repo "org-roam/org-roam-bibtex"))
 (package! org-ref)
 (unpin! org-roam)
 (unpin! ivy-bibtex)
+(package! doom-themes)

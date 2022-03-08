@@ -54,8 +54,8 @@
 ;;
 (require 'init-func)
 (require 'init-basic)
-(require 'init-ivy)
-(require 'init-company)
+;(require 'init-ivy)
+;(require 'init-company)
 (require 'init-org)
 (require 'init-python)
 (require 'init-latex)

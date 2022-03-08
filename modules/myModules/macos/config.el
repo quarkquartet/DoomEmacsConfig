@@ -16,7 +16,7 @@
 (setq ns-use-native-fullscreen nil)
 
 ;; Visit files opened outside of Emacs in existing frame, not a new one
-(setq ns-pop-up-frames nil)
+;(setq ns-pop-up-frames nil)
 
 ;; sane trackpad/mouse scroll settings
 (setq mac-redisplay-dont-reset-vscroll t
