@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: math block
-# key: math
-# condition: t
-# --
-$$
-$1
-$$

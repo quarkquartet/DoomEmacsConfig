@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: large parentheses
-# key: lr
-# condition: t
-# --
-\left ( $1 \right )

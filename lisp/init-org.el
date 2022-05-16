@@ -1,7 +1,5 @@
 (add-hook! 'org-mode-hook
   (setq-local line-spacing 0.45))
-(map! :map org-mode-map
-      :localleader "M" #'cdlatex-environment)
 (setq org-preview-latex-default-process 'dvisvgm)
 
 
@@ -9,19 +7,20 @@
   (setq org-enforce-todo-dependencies nil)
   (setq org-agenda-files '("~/org/main.org"))
   (setq org-image-actual-width '(500))
+  (setq org-agenda-todo-ignore-scheduled 'future)
   (setq org-agenda-custom-commands
         '(
           ("w" . "任务安排")
           ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
           ("wb" "重要但不紧急的任务" tags-todo "-weekly-monthly-daily+PRIORITY=\"B\"")
           ("wc" "不重要的任务" tags-todo "+PRIORITY=\"C\"")
-          ("W" "Weekly Review"
-           ((stuck "") ;; review stuck projects as designated by org-stuck-projects
-            (tags-todo "project")
-            (tags-todo "daily")
-            (tags-todo "weekly")
-            (tags-todo "reading")
-            ))
+;;          ("W" "Weekly Review"
+;;           ((stuck "") ;; review stuck projects as designated by org-stuck-projects
+;;            (tags-todo "project")
+;;            (tags-todo "daily")
+;;            (tags-todo "weekly")
+;;            (tags-todo "reading")
+;;            ))
           ))
   (setq org-todo-keywords
         '((sequence "TODO(t)" "DOING(s)" "WAIT(w)" "|" "DONE(d)" "CANCELED(c)")))
@@ -44,7 +43,7 @@
           ))
   ;(setq org-enforce-todo-dependencies t)
   ;; 绑定键位
-  (setq org-log-file-dir (expand-file-name "log" org-directory))
+  (setq org-log-file-dir (expand-file-name "00-log" org-directory))
   (setq org-log-files (file-expand-wildcards (concat org-log-file-dir "/*.org")))
   (defun clock-range-files () org-agenda-files
          (append org-agenda-files org-log-files))
@@ -69,8 +68,8 @@
 ;; Org-roam-bibtex
 ;;---------------------------
 ;;
-(setq bibliography-path "~/org/literature/library.bib")
-(setq bibliography-notes "~/org/literature/")
+(setq bibliography-path "~/org/10-Physics&Math/1001-Literature/library.bib")
+(setq bibliography-notes "~/org/10-Physics&Math/1001-Literature")
 (use-package! org-ref
   :after org
   :config
@@ -142,17 +141,33 @@ from the local bibliography.  This is set internally by
   :after org-roam
   :config
   (require 'org-ref)
+  (require 'ivy-bibtex)
   (setq!
    orb-insert-interface 'ivy-bibtex
    orb-note-actions-interface 'ivy
-   orb-insert-link-description 'citation-org-ref-2
-        )
-  (setq orb-preformat-keywords '("citekey" "author" "title" "url" "year"))
-  (setq org-roam-capture-templates
-        '(("r" "bibliography reference" plain
+   orb-insert-link-description "${title}-${author}"  )
+  (setq! orb-preformat-keywords '("citekey" "author" "title" "url" "year"))
+  (setq! org-roam-capture-templates
+        '(("r" "Review Paper" plain
            ""
            :if-new
-           (file+head "~/org/literature/${citekey}.org" "#+TITLE: ${title}\n #+AUTHOR: ${author}\n #+URL: ${url}\n #+YEAR: ${year}\n")
+           (file+head "~/org/10-Physics&Math/1001-Literature/${citekey}.org" "-*- org -*-\n#+TITLE: ${title}\n #+AUTHOR: ${author}\n #+URL: ${url}\n #+YEAR: ${year}\n")
+           :unnarrowed t)
+          ("p" "Research Paper" plain
+           ""
+           :if-new
+           (file+head "~/org/10-Physics&Math/1001-Literature/${citekey}.org"
+"#+TITLE: ${title}\n
+#+AUTHOR: ${author}\n
+#+URL: ${url}\n
+#+YEAR: ${year}\n
+ \n
+* Summary\n
+** Motivation\n
+** Solution\n
+** Conclusion \n
+* Judgement\n
+* Technical Details\n")
            :unnarrowed t)))
   )
 (map! :map org-mode-map

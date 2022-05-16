@@ -3,7 +3,6 @@
 # uuid: 
 # key: prd
 # condition: t
-# group: PRD
 # --
 \documentclass[10pt,aps,prd,nofootinbib,superscriptaddress,preprintnumbers,balancelastpage]{revtex4}
 \PassOptionsToPackage{slash}{url}

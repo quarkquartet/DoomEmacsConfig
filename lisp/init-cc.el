@@ -1,3 +1,4 @@
+(setq-default c-guess-guessed-basic-offset 2)
 (setq lsp-clients-clangd-args '("-j=3"
                                 "--background-index"
                                 "--clang-tidy"

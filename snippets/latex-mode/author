@@ -1,8 +1,7 @@
 # -*- mode: snippet -*-
-# name: PRD author
-# key: pra
+# name: author
+# key: aut
 # condition: t
-# group: PRD
 # --
 \author{$1}
 \email{$2}

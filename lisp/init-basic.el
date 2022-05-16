@@ -18,9 +18,9 @@
       lsp-eldoc-enable-hover nil
       lsp-modeline-diagnostics-enable nil
       frame-title-format "%b"
+      counsel-grep-swiper-limit 1000000
       treemacs-width 32)
 (+global-word-wrap-mode +1)
-
 ;; ========================================
 ;; Font settings, include 中文字体
 ;; ========================================
@@ -36,9 +36,9 @@
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
                             charset
-                            (font-spec :family "Heiti SC" :size 14)))
-        (dolist (charset '(?\x25C9 ?\x25CB ?\x2738 ?\x273F))
-          (set-fontset-font nil charset (font-spec :family "SFMono Nerd Font" :size 13)))
+                            (font-spec :family "PingFang SC" :size 14)))
+;        (dolist (charset '(?\x25C9 ?\x25CB ?\x2738 ?\x273F))
+;          (set-fontset-font nil charset (font-spec :family "Monaco Nerd Font Mono" :size 13)))
         ) ;; 14 16 20 22 28
 ))
 
