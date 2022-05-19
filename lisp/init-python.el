@@ -8,10 +8,6 @@
   ;;(set-formatter! 'autopep8 "autopep8 -")
   (add-hook! 'before-save-hook 'py-isort-before-save)
 
-(use-package! lsp-pyright
- :config
- (setq lsp-pyright-venv-path '(expand-file-name "~/envs/py386"))
- )
  )
 (defun my-python-checker ()
     (flycheck-select-checker 'python-flake8))

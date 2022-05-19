@@ -23,7 +23,7 @@
 ;;            ))
           ))
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "DOING(s)" "WAIT(w)" "|" "DONE(d)" "CANCELED(c)")))
+        '((sequence "TODO(t)" "DOING(s)" "|" "DONE(d)" "CANCELED(c)" "WAIT(w)" )))
   (setq org-todo-keyword-faces
         '(
           ("TODO"  .   (:foreground "red" :weight bold))
