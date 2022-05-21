@@ -59,6 +59,102 @@
   (setq org-startup-with-latex-preview t)
   (setq warning-suppress-types '((org-element-cache)))
   (plist-put org-format-latex-options :scale 1.8)
+  (unless (boundp 'org-latex-classes)
+    (setq org-latex-classes nil))
+  (add-to-list 'org-latex-classes
+               '("article"
+                 "\\documentclass[12pt]{article}
+
+\\usepackage{amsmath,amssymb,graphicx,multirow,xspace}
+\\usepackage[colorlinks=true,urlcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,linkcolor=blue,menucolor=blue,pagecolor=blue]{hyperref}
+\\usepackage[compress,numbers]{natbib}
+\\usepackage{bracket}
+\\usepackage{slashed}
+\\usepackage{physics}
+\\usepackage{bm}
+\\usepackage{indentfirst}
+\\usepackage{appendix}
+\\usepackage{verbatim}
+\\usepackage{cancel}
+
+\\usepackage[T1]{fontenc}
+\\addtolength{\\oddsidemargin}{-.8in}
+\\addtolength{\\evensidemargin}{-.8in}
+\\addtolength{\\textwidth}{1.6in}
+\\addtolength{\\topmargin}{-.8in}
+\\addtolength{\\textheight}{1.6in}
+\\addtolength{\\footskip}{0.1in}
+\\renewcommand{\\baselinestretch}{1.2}
+
+\\long\\def\\symbolfootnote[#1]#2{\\begingroup%
+\\def\\thefootnote{\\fnsymbol{footnote}}\\footnote[#1]{#2}\\endgroup}
+
+\\renewcommand{\\textfraction}{0}
+\\renewcommand{\\topfraction}{0.95}
+
+\\newcommand{\\iw}[1]{{\\color{blue} IW: \\bf #1}}
+
+\\newcommand{\\gev}{\\mathrm{GeV}}
+\\newcommand{\\tev}{\\mathrm{TeV}}
+
+
+\\font\\fiverm=cmr5
+\\input prepictex
+\\input pictex
+\\input postpictex
+\\newdimen\\tdim
+\\tdim=\\unitlength
+\\def\\stpltsmbl{\\setplotsymbol ({\\small .})}
+\\def\\tarrow{\\arrow <5\\tdim> [.3,.6]}
+\\def\\barrow{\\arrow <8\\tdim> [.3,.6]}
+%\\newcommand{\\makeblue}[1]{\\color[rgb]{0.4,0.4,1}#1\\color[rgb]{0,0,0}}
+%\\newcommand{\\makered}[1]{\\color[rgb]{0.7,0,0}#1\\color[rgb]{0,0,0}}
+
+\\begin{document}
+
+\\begin{titlepage}
+
+%\\begin{flushright}
+%\\small{RUNHETC-2013-19}\\\\
+%\\end{flushright}
+
+\\vspace{0.5cm}
+\\begin{center}
+\\Large\\bf
+
+\\end{center}
+
+\\vspace{0.2cm}
+\\begin{center}
+{\\sc
+Isaac R. Wang,$^1$\\symbolfootnote[1]{isaac.wang@rutgers.edu}
+}\\\\
+\\vspace{0.6cm}
+\\textit{$\\,^1$New High Energy Theory Center\\\\
+Department of Physics and Astronomy\\\\
+Rutgers University, Piscataway, NJ 08854, USA}\\\\
+\\end{center}
+
+\\vspace{0.4cm}
+
+\\begin{abstract}
+abstract here
+\\end{abstract}
+
+\\end{titlepage}
+
+\\vspace{0.2cm}
+\\noindent
+
+\\tableofcontents
+\\newpage
+
+"
+
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")))
 
 ;  (plist-put org-format-latex-options :background "Transparent")
   )
@@ -135,10 +231,10 @@ from the local bibliography.  This is set internally by
               :keymap (when ivy-bibtex-use-extra-keymap ivy-bibtex-extra-keymap))))
 )
 
-(after! org-roam
+(after! org-ref
   (org-roam-bibtex-mode))
 (use-package! org-roam-bibtex
-  :after org-roam
+  :after org-ref
   :config
   (require 'org-ref)
   (require 'ivy-bibtex)
