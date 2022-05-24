@@ -52,13 +52,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 ;;
-(require 'init-func)
 (require 'init-basic)
-;(require 'init-ivy)
-;(require 'init-company)
-(require 'init-org)
 (require 'init-python)
-(require 'init-latex)
-;(require 'init-markdown)
 (require 'init-cc)
-;(require 'init-eaf)
