@@ -54,5 +54,3 @@
 (package! org-ref)
 (unpin! org-roam)
 (unpin! ivy-bibtex)
-(package! xenops
-  :recipe (:host github :repo "dandavison/xenops"))

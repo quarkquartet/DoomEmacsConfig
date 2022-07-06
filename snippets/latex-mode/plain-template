@@ -4,13 +4,13 @@
 # condition: t
 # group: plain latex
 # --
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 \pdfoutput=1
 
 \usepackage{amsmath,amssymb,graphicx,multirow,xspace}
 \usepackage[colorlinks=true,urlcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,linkcolor=blue,menucolor=blue,pagecolor=blue]{hyperref}
 \usepackage[compress,numbers]{natbib}
-\usepackage{bracket}
+\usepackage{braket}
 \usepackage{slashed}
 \usepackage{physics}
 \usepackage{bm}
@@ -69,13 +69,13 @@ ${1:title}
 
 \vspace{0.2cm}
 \begin{center}
-{\sc
+{
 Isaac R. Wang,$^1$\symbolfootnote[1]{isaac.wang@rutgers.edu}
-}\\
+}\\\\
 \vspace{0.6cm}
-\textit{$\,^1$New High Energy Theory Center\\
-Department of Physics and Astronomy\\
-Rutgers University, Piscataway, NJ 08854, USA}\\
+\textit{$\,^1$New High Energy Theory Center\\\\
+Department of Physics and Astronomy\\\\
+Rutgers University, Piscataway, NJ 08854, USA}\\\\
 \end{center}
 
 \vspace{0.4cm}

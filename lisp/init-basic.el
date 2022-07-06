@@ -36,7 +36,7 @@
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
                             charset
-                            (font-spec :family "PingFang SC" :size 14)))
+                            (font-spec :family "STKaiti" :size 15)))
         (dolist (charset '(?\x25C9 ?\x25CB ?\x2738 ?\x273F))
           (set-fontset-font nil charset (font-spec :family "Monaco Nerd Font Mono" :size 13)))
        ) ;; 14 16 20 22 28

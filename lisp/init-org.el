@@ -1,46 +1,50 @@
 (add-hook! 'org-mode-hook
   (setq-local line-spacing 0.45))
-(setq org-preview-latex-default-process 'dvisvgm)
-
-
 (after! org
   (setq org-enforce-todo-dependencies nil)
   (setq org-agenda-files '("~/org/main.org"))
-  (setq org-image-actual-width '(500))
+  (setq org-image-actual-width '(500)
+        org-startup-folded t)
   (setq org-agenda-todo-ignore-scheduled 'future)
-  (setq org-agenda-custom-commands
-        '(
-          ("w" . "任务安排")
-          ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
-          ("wb" "重要但不紧急的任务" tags-todo "-weekly-monthly-daily+PRIORITY=\"B\"")
-          ("wc" "不重要的任务" tags-todo "+PRIORITY=\"C\"")
-;;          ("W" "Weekly Review"
-;;           ((stuck "") ;; review stuck projects as designated by org-stuck-projects
-;;            (tags-todo "project")
-;;            (tags-todo "daily")
-;;            (tags-todo "weekly")
-;;            (tags-todo "reading")
-;;            ))
-          ))
+  (setq org-preview-latex-default-process 'dvisvgm)
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "DOING(s)" "|" "DONE(d)" "CANCELED(c)" "WAIT(w)" )))
-  (setq org-todo-keyword-faces
-        '(
-          ("TODO"  .   (:foreground "red" :weight bold))
-          ("DOING" .   (:foreground "orange" :weight bold))
-          ("WAIT" . (:foreground "SkyBlue" :weight bold))
-          ("DONE" .    (:foreground "green" :weight bold))
-          ("CANCELED" .     (:foreground "green" :weight bold))
-          ))
+        '((sequence
+           "TODO(t)"  ; A task that needs doing & is ready to do
+           "PROJ(p)"  ; A project, which usually contains other tasks
+           "HABIT(r)"  ; A recurring task
+           "DOING(s)"  ; A task that is in progress
+           "WAIT(w)"  ; Something external is holding up this task
+           "HOLD(h)"  ; This task is paused/on hold because of me
+           "IDEA(i)"  ; An unconfirmed and unapproved task or notion
+           "|"
+           "DONE(d)"  ; Task successfully completed
+           "CANCELED(k)") ; Task was cancelled, aborted or is no longer applicable
+          (sequence
+           "[ ](T)"   ; A task that needs doing
+           "[-](S)"   ; Task is in progress
+           "[?](W)"   ; Task is being held up or paused
+           "|"
+           "[X](D)")  ; Task was completed
+          )
+        org-todo-keyword-faces
+        '(("[-]"  . +org-todo-active)
+          ("DOING" . +org-todo-active)
+          ("[?]"  . +org-todo-onhold)
+          ("WAIT" . +org-todo-onhold)
+          ("HOLD" . +org-todo-onhold)
+          ("PROJ" . +org-todo-project)
+          ("NO"   . +org-todo-cancel)
+          ("CANCELED" . +org-todo-cancel)
+          ("DONE" .    (:foreground "green" :weight bold))))
   ;; 优先级范围和默认任务的优先级
   (setq org-highest-priority ?A)
   (setq org-lowest-priority  ?C)
   ;; 优先级醒目外观
-  (setq org-priority-faces
-        '((?A . (:background "red" :foreground "white" :weight bold))
-          (?B . (:background "DarkOrange" :foreground "white" :weight bold))
-          (?C . (:background "yellow" :foreground "DarkGreen" :weight bold))
-          ))
+ ;; (setq org-priority-faces
+ ;;       '((?A . (:background "red" :foreground "white" :weight bold))
+ ;;         (?B . (:background "DarkOrange" :foreground "white" :weight bold))
+ ;;         (?C . (:background "yellow" :foreground "DarkGreen" :weight bold))
+ ;;         ))
   ;(setq org-enforce-todo-dependencies t)
   ;; 绑定键位
   (setq org-log-file-dir (expand-file-name "00-log" org-directory))
@@ -50,116 +54,51 @@
    (setq org-clock-clocktable-default-properties
         '(:link t :maxlevel 6 :fileskip0 t :compact nil :narrow 60 :score 0 :scope clock-range-files))
   (setq org-refile-targets '((nil :maxlevel . 9)
-                             (org-log-files :maxlevel . 9)))
+                             (org-log-files :maxlevel . 9))
+        org-refile-use-outline-path t
+        org-outline-path-complete-in-steps nil)
  ; (setq org-refile-targets (quote ((nil :maxlevel . 9)
   ;                                 (org-agenda-file-log :maxlevel . 9))))
-  (setq org-refile-use-outline-path t)
-  (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-allow-creating-parent-nodes (quote confirm))
   (setq org-startup-with-latex-preview t)
   (setq warning-suppress-types '((org-element-cache)))
   (plist-put org-format-latex-options :scale 1.8)
-  (unless (boundp 'org-latex-classes)
-    (setq org-latex-classes nil))
-  (add-to-list 'org-latex-classes
-               '("article"
-                 "\\documentclass[12pt]{article}
-
-\\usepackage{amsmath,amssymb,graphicx,multirow,xspace}
-\\usepackage[colorlinks=true,urlcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,linkcolor=blue,menucolor=blue,pagecolor=blue]{hyperref}
-\\usepackage[compress,numbers]{natbib}
-\\usepackage{bracket}
-\\usepackage{slashed}
-\\usepackage{physics}
-\\usepackage{bm}
-\\usepackage{indentfirst}
-\\usepackage{appendix}
-\\usepackage{verbatim}
-\\usepackage{cancel}
-
-\\usepackage[T1]{fontenc}
-\\addtolength{\\oddsidemargin}{-.8in}
-\\addtolength{\\evensidemargin}{-.8in}
-\\addtolength{\\textwidth}{1.6in}
-\\addtolength{\\topmargin}{-.8in}
-\\addtolength{\\textheight}{1.6in}
-\\addtolength{\\footskip}{0.1in}
-\\renewcommand{\\baselinestretch}{1.2}
-
-\\long\\def\\symbolfootnote[#1]#2{\\begingroup%
-\\def\\thefootnote{\\fnsymbol{footnote}}\\footnote[#1]{#2}\\endgroup}
-
-\\renewcommand{\\textfraction}{0}
-\\renewcommand{\\topfraction}{0.95}
-
-\\newcommand{\\iw}[1]{{\\color{blue} IW: \\bf #1}}
-
-\\newcommand{\\gev}{\\mathrm{GeV}}
-\\newcommand{\\tev}{\\mathrm{TeV}}
-
-
-\\font\\fiverm=cmr5
-\\input prepictex
-\\input pictex
-\\input postpictex
-\\newdimen\\tdim
-\\tdim=\\unitlength
-\\def\\stpltsmbl{\\setplotsymbol ({\\small .})}
-\\def\\tarrow{\\arrow <5\\tdim> [.3,.6]}
-\\def\\barrow{\\arrow <8\\tdim> [.3,.6]}
-%\\newcommand{\\makeblue}[1]{\\color[rgb]{0.4,0.4,1}#1\\color[rgb]{0,0,0}}
-%\\newcommand{\\makered}[1]{\\color[rgb]{0.7,0,0}#1\\color[rgb]{0,0,0}}
-
-\\begin{document}
-
-\\begin{titlepage}
-
-%\\begin{flushright}
-%\\small{RUNHETC-2013-19}\\\\
-%\\end{flushright}
-
-\\vspace{0.5cm}
-\\begin{center}
-\\Large\\bf
-
-\\end{center}
-
-\\vspace{0.2cm}
-\\begin{center}
-{\\sc
-Isaac R. Wang,$^1$\\symbolfootnote[1]{isaac.wang@rutgers.edu}
-}\\\\
-\\vspace{0.6cm}
-\\textit{$\\,^1$New High Energy Theory Center\\\\
-Department of Physics and Astronomy\\\\
-Rutgers University, Piscataway, NJ 08854, USA}\\\\
-\\end{center}
-
-\\vspace{0.4cm}
-
-\\begin{abstract}
-abstract here
-\\end{abstract}
-
-\\end{titlepage}
-
-\\vspace{0.2cm}
-\\noindent
-
-\\tableofcontents
-\\newpage
-
-"
-
-               ("\\section{%s}" . "\\section*{%s}")
-               ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-               ("\\paragraph{%s}" . "\\paragraph*{%s}")))
 
 ;  (plist-put org-format-latex-options :background "Transparent")
   )
-
-
+(setq org-agenda-custom-commands
+      (quote (("i" "My agenda"
+               ((agenda " " ((org-agenda-span 'day)
+                             (org-agenda-start-day "0d")
+                            (org-agenda-show-log 'clockcheck)
+                            (org-agenda-start-with-log-mode nil)
+                            (org-agenda-log-mode-items '(closed clock))
+                            (org-agenda-clockreport-mode t)))
+                (tags-todo "errands/-WAIT-HABIT-PROJ-IDEA"
+                           ((org-agenda-overriding-header "Errands needs to run")
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
+                (tags-todo "research/-PROJ-WAIT"
+                           ((org-agenda-overriding-header "Research Projects")
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
+                (tags-todo "teaching/-PROJ-WAIT"
+                           ((org-agenda-overriding-header "Teaching")
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
+                (tags-todo "reading/-WAIT-HABIT"
+                           ((org-agenda-overriding-header "Inbox Reading Options")
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
+                (tags-todo "learning/-WAIT-HABIT"
+                           ((org-agenda-overriding-header "Learning Tasks")
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
+                (tags-todo "English/-WAIT-HABIT"
+                           ((org-agenda-overriding-header "English Reading Options")
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
+                (tags-todo "idea/-WAIT-HABIT-PROJ-IDEA"
+                           ((org-agenda-overriding-header "Idea Checking")
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
+                (tags-todo "-research-reading-learning-English-idea-errands-teaching/-WAIT-HABIT-PROJ-IDEA"
+                           ((org-agenda-overriding-header "Other tasks")
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
+               )))))
 ;;---------------------------
 ;; Org-roam-bibtex
 ;;---------------------------

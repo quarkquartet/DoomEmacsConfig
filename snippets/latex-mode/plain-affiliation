@@ -4,5 +4,5 @@
 # condition: t
 # group: plain latex
 # --
-\textit{$\,^$1$ $2}\\
+\textit{$\,^$1$ $2}\\\\
 \vspace{0.5cm}
