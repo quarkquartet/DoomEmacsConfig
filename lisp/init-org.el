@@ -73,7 +73,8 @@
                             (org-agenda-show-log 'clockcheck)
                             (org-agenda-start-with-log-mode nil)
                             (org-agenda-log-mode-items '(closed clock))
-                            (org-agenda-clockreport-mode t)))
+                            (org-agenda-clockreport-mode t)
+                            (org-agenda-clockreport-parameter-plist '(:maxlevel 4 :link t))))
                 (tags-todo "errands/-WAIT-HABIT-PROJ-IDEA"
                            ((org-agenda-overriding-header "Errands needs to run")
                             (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
