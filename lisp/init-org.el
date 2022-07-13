@@ -11,7 +11,6 @@
         '((sequence
            "TODO(t)"  ; A task that needs doing & is ready to do
            "PROJ(p)"  ; A project, which usually contains other tasks
-           "HABIT(r)"  ; A recurring task
            "DOING(s)"  ; A task that is in progress
            "WAIT(w)"  ; Something external is holding up this task
            "HOLD(h)"  ; This task is paused/on hold because of me
@@ -70,35 +69,39 @@
       (quote (("i" "My agenda"
                ((agenda " " ((org-agenda-span 'day)
                              (org-agenda-start-day "0d")
-                            (org-agenda-show-log 'clockcheck)
-                            (org-agenda-start-with-log-mode nil)
-                            (org-agenda-log-mode-items '(closed clock))
-                            (org-agenda-clockreport-mode t)
-                            (org-agenda-clockreport-parameter-plist '(:maxlevel 4 :link t))))
-                (tags-todo "errands/-WAIT-HABIT-PROJ-IDEA"
+                             (org-agenda-todo-ignore-scheduled 'future)))
+                (tags-todo "errands/-WAIT-PROJ-IDEA"
                            ((org-agenda-overriding-header "Errands needs to run")
-                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))
+                            (org-agenda-todo-ignore-scheduled 'future)))
                 (tags-todo "research/-PROJ-WAIT"
                            ((org-agenda-overriding-header "Research Projects")
-                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))
+                            (org-agenda-todo-ignore-scheduled 'future)))
                 (tags-todo "teaching/-PROJ-WAIT"
                            ((org-agenda-overriding-header "Teaching")
-                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
-                (tags-todo "reading/-WAIT-HABIT"
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))
+                            (org-agenda-todo-ignore-scheduled 'future)))
+                (tags-todo "reading/-WAIT"
                            ((org-agenda-overriding-header "Inbox Reading Options")
-                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
-                (tags-todo "learning/-WAIT-HABIT"
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))
+                            (org-agenda-todo-ignore-scheduled 'future)))
+                (tags-todo "learning/-WAIT"
                            ((org-agenda-overriding-header "Learning Tasks")
-                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
-                (tags-todo "English/-WAIT-HABIT"
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))
+                            (org-agenda-todo-ignore-scheduled 'future)))
+                (tags-todo "English/-WAIT"
                            ((org-agenda-overriding-header "English Reading Options")
-                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
-                (tags-todo "idea/-WAIT-HABIT-PROJ-IDEA"
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))
+                            (org-agenda-todo-ignore-scheduled 'future)))
+                (tags-todo "idea/-WAIT-PROJ-IDEA"
                            ((org-agenda-overriding-header "Idea Checking")
-                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
-                (tags-todo "-research-reading-learning-English-idea-errands-teaching/-WAIT-HABIT-PROJ-IDEA"
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))
+                            (org-agenda-todo-ignore-scheduled 'future)))
+                (tags-todo "-research-reading-learning-English-idea-errands-teaching/-WAIT-PROJ-IDEA"
                            ((org-agenda-overriding-header "Other tasks")
-                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))))
+                            (org-agenda-sorting-strategy '(priority-down category-keep todo-state-up))
+                            (org-agenda-todo-ignore-scheduled 'future)))
                )))))
 ;;---------------------------
 ;; Org-roam-bibtex
