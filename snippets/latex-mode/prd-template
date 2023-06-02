@@ -1,0 +1,70 @@
+# -*- mode: snippet -*-
+# name: PRD template
+# uuid: 
+# key: prd
+# condition: t
+# --
+\documentclass[10pt,aps,prd,nofootinbib,superscriptaddress,preprintnumbers,balancelastpage]{revtex4}
+\PassOptionsToPackage{slash}{url}
+\usepackage{graphicx,epsfig,psfrag,amssymb,hyperref}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{color,graphicx,epsfig,psfrag,amsmath,empheq}
+\usepackage{bm}
+\usepackage{mathrsfs,amsfonts,color}
+\usepackage{slashed}
+\usepackage{hepunits}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{xspace}
+\usepackage[utf8]{inputenc}
+\usepackage{siunitx}
+
+\renewcommand{\baselinestretch}{1.2}
+\newcommand{\iw}[1]{{\color{blue} IW: \bf #1}}
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\gev}{\mathrm{GeV}}
+\newcommand{\tev}{\mathrm{TeV}}
+\renewcommand{\vev}[1]{ \left\langle {#1} \right\rangle }
+
+% Document lengths.
+\AtBeginDocument{
+\heavyrulewidth=.08em
+\lightrulewidth=.05em
+\cmidrulewidth=.03em
+\belowrulesep=.65ex
+\belowbottomsep=0pt
+\aboverulesep=.4ex
+\abovetopsep=0pt
+\cmidrulesep=\doublerulesep
+\cmidrulekern=.5em
+\defaultaddspace=.5em
+}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{$1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Isaac R. Wang}
+\email{isaac.wang@rutgers.edu}
+\affiliation{New High Energy Theory Center, Rutgers University, Piscataway, New Jersey 08854-8019 USA}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+
+\bibliographystyle{utphys}
+\bibliography{}
+
+\end{document}

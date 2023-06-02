@@ -6,8 +6,12 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(add-to-list 'default-frame-alist '(top . 110))
+(add-to-list 'default-frame-alist '(left . 600))
+(add-to-list 'default-frame-alist '(width . 95))
+(add-to-list 'default-frame-alist '(height . 50))
+
+(add-to-list 'load-path (expand-file-name "~/.config/doom/lisp"))
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -32,15 +36,12 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -74,3 +75,10 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+(require 'init-func)
+(require 'init-basic)
+(require 'init-ivy)
+(require 'init-company)
+(require 'init-python)
+(require 'init-latex)
+(require 'init-cc)

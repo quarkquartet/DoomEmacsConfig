@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: horizontal line
+# key: hl
+# condition: t
+# --
+\noindent\makebox[\linewidth]{\rule{\textwidth}{1pt}}

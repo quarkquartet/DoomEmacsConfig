@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: plain affiliation
+# key: plf
+# condition: t
+# group: plain latex
+# --
+\textit{$\,^$1$ $2}\\\\
+\vspace{0.5cm}

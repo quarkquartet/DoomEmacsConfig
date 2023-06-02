@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: plain author
+# key: pla
+# condition: t
+# group: plain latex
+# --
+${1:name},$^{$2}$\symbolfootnote[$3]{${4:email}}

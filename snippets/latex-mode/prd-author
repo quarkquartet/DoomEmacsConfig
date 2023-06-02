@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: prd author
+# key: aut
+# condition: t
+# --
+\author{$1}
+\email{$2}
+\affiliation{$3}

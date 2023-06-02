@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: minipage
+# key: mini
+# condition: t
+# --
+\begin{minipage}[t]{0.495\linewidth}
+    \hspace{0.5cm}
+    \includegraphics[width=3.2in]{$1}
+\end{minipage}

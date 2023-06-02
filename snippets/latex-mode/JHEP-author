@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: JHEP author
+# key: jha
+# condition: t
+# group: JHEP
+# --
+%%
+\author[${1:label}]{${2:name}}
+\affiliation[${3:label}]{{${4:institution}}}
+\emailAdd{${5:email address}}

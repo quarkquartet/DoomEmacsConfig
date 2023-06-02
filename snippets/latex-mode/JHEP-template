@@ -1,0 +1,78 @@
+# -*- mode: snippet -*-
+# name: JHEP template
+# key: jhep
+# condition: t
+# group: JHEP
+# --
+\documentclass[a4paper,11pt]{article}
+%\pdfoutput=1 % if your are submitting a pdflatex (i.e. if you have
+% images in pdf, png or jpg format)
+\usepackage{jheppub} % for details on the use of the package, please
+% see the JHEP-author-manual
+\usepackage[T1]{fontenc} % if needed
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{indentfirst}
+\usepackage{slashed}
+\usepackage{amsmath,amssymb,multirow,xspace,slashed,array,booktabs}
+\usepackage{physics}
+\usepackage{indentfirst}
+\usepackage{url}
+\usepackage{bm}
+\usepackage{braket}
+\allowdisplaybreaks[4]
+\setlength{\parindent}{1em}
+\usepackage[colorlinks=true,urlcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,linkcolor=blue,menucolor=blue,pagecolor=blue]{hyperref}
+\usepackage{natbib}
+\setcitestyle{square, comma, numbers,sort&compress, super}
+\usepackage{subfigure, placeins}
+\usepackage{booktabs}
+\usepackage{blindtext, rotating}
+\usepackage{appendix}
+\usepackage{afterpage}
+\usepackage{enumitem}
+\usepackage{marvosym}
+\usepackage{bbold}
+\usepackage{siunitx}
+\usepackage{verbatim}
+\usepackage{soul} %scratch out text
+\usepackage[normalem]{ulem}
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\usepackage{cancel}
+
+\newcommand{\iw}[1]{{\color{blue} IW: \bf #1}}
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\gev}{\mathrm{GeV}}
+\newcommand{\tev}{\mathrm{TeV}}
+\renewcommand{\vev}[1]{ \left\langle {#1} \right\rangle }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\boldmath $1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Author information
+\author[a]{Isaac R. Wang}
+\affiliation[a]{New High Energy Theory Center, Rutgers University, Piscataway, New Jersey 08854-8019 USA}
+\emailAdd{isaac.wang@rutgers.edu}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\abstract{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+\maketitle
+\flushbottom
+
+\newpage
+
+
+\bibliographystyle{JHEP}
+\bibliography{}
+
+\end{document}

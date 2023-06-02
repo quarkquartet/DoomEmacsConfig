@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: title
+# key: tit
+# condition: t
+# --
+# -*- org -*-
+#+TITLE: $1
+#+AUTHOR: Isaac R. Wang
+#+EMAIL: isaac.wang.us@gmail.com
+#+STARTUP: fold

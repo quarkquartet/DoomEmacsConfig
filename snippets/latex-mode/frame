@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: frame
+# uuid: fr
+# key: fm
+# condition: t
+# --
+\begin{frame}${1:[$2]}
+        ${3:\frametitle{$4}}
+        ${0:`%`}
+\end{frame}
