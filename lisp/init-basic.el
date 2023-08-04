@@ -71,7 +71,7 @@
 (use-package! doom-themes
   :config
   ;; Global settings (defaults)
-  (setq doom-theme 'doom-one)
+  (setq doom-theme 'doom-dracula)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
   (setq doom-themes-treemacs-theme "doom-colors")
