@@ -7,9 +7,9 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 (add-to-list 'default-frame-alist '(top . 110))
-(add-to-list 'default-frame-alist '(left . 600))
-(add-to-list 'default-frame-alist '(width . 95))
-(add-to-list 'default-frame-alist '(height . 50))
+(add-to-list 'default-frame-alist '(left . 550))
+(add-to-list 'default-frame-alist '(width . 110))
+(add-to-list 'default-frame-alist '(height . 44))
 
 (add-to-list 'load-path (expand-file-name "~/.config/doom/lisp"))
 

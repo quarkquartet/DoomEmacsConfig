@@ -30,7 +30,7 @@
   ;; english font
   (if (display-graphic-p)
       (progn
-        (set-face-attribute 'default nil :font (font-spec :family "MesloLGM Nerd Font" :size 13))
+        (set-face-attribute 'default nil :font (font-spec :family "MesloLGM Nerd Font" :size 14))
                                         ;(set-fontset-font t 'unicode (font-spec :family "MesloLGS Nerd Font Mono") nil 'prepend)
                                         ;        (setq doom-font (font-spec :family "MesloLGM Nerd Font Mono" :size 13))
         (setq doom-unicode-font (font-spec :family "MesloLGM Nerd Font"))
@@ -68,16 +68,26 @@
 ;;;;           )))
 ;;;;
 ;; (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
-(use-package! doom-themes
-  :config
-  ;; Global settings (defaults)
-  (setq doom-theme 'doom-dracula)
-  (doom-themes-visual-bell-config)
-  (doom-themes-org-config)
-  (setq doom-themes-treemacs-theme "doom-colors")
-  (doom-themes-treemacs-config)
-  )
+                                        ;(use-package! doom-themes
+                                        ;  :config
+                                        ;  ;; Global settings (defaults)
+                                        ;  (setq doom-theme 'doom-monokai-classic)
+                                        ;  (doom-themes-visual-bell-config)
+                                        ;  (doom-themes-org-config)
+                                        ;  (setq doom-themes-treemacs-theme "doom-colors")
+                                        ;  (doom-themes-treemacs-config)
+                                        ;  )
                                         ;(setq org-hide-leading-stars t)
+;;(add-to-list 'default-frame-alist '(alpha . 90))
+(defun my/load-theme (appearance)
+  "Load theme, taking current system APPEARANCE into consideration."
+  (mapc #'disable-theme custom-enabled-themes)
+  (pcase appearance
+    ('light (load-theme 'doom-nord-light t))
+    ('dark (load-theme 'doom-one t))))
+
+(add-hook 'ns-system-appearance-change-functions #'my/load-theme)
+
 
 ;; ========================================
 ;; Highlight-indent guide
